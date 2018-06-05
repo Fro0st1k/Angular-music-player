@@ -1,0 +1,42 @@
+@import 'src/scss/variables/colors';
+@import 'src/scss/mixins/mixins';
+
+.top-menu {
+  display: flex;
+  justify-content: center;
+  padding: 20px 0;
+  text-transform: uppercase;
+  font-size: 12px;
+  user-select: none;
+
+  &__item {
+    padding: 10px 10px 0px 10px;
+    margin: 10px;
+    cursor: pointer;
+    
+    &-link {
+      color: $font-song-unactive-color;
+      text-decoration: none;
+      @include set-animation(color, .2s, linear);
+    }
+    
+    &--active &-link {
+      color: $font-color;
+    }
+    
+    &:hover &-link {
+      color: $font-color;
+    }
+    
+    &--active:after {
+      display: block;
+      content: '';
+      position: relative;
+      top: 4px;
+      margin: 0 auto;
+      width: 30px;
+      height: 2px;
+      background-color: $primary-color-contrast;
+    }
+  }
+}

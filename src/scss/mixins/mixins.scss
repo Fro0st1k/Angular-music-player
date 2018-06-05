@@ -1,0 +1,5 @@
+@mixin set-animation($property, $duration, $func) {
+  transition-property: $property;
+  transition-duration: $duration;
+  transition-timing-function: $func;
+}

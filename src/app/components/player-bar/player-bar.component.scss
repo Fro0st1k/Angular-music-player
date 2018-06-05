@@ -1,0 +1,233 @@
+@import 'src/scss/variables/colors';
+
+.music-player {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  height: 90px;
+  background-color: #282828;
+  display: flex;
+  align-items: center;
+  z-index: 200;
+  
+  &__now-playing {
+    width: 30%;
+    display: flex;
+    align-items: center;
+  }
+  
+  &__song-info {
+    display: flex;
+    align-items: center;
+    color: $font-color;
+    
+    &-cover {
+      width: 56px;
+      height: 70px;
+      background-color: $primary-color;
+      margin: 0 16px;
+
+      &-img {
+        display: block;
+        width: 56px;
+        height: 70px;
+      }
+    }
+    
+    &-about {
+      margin-right: 10px;  
+    }
+    
+    &-link {
+      text-decoration: none;
+      color: $font-color;
+      letter-spacing: 0.21px;
+      font-weight: 200;
+      
+      &--song-name {
+        font-size: 14px;
+      }
+      
+      &--artist-name {
+        color: $font-artist-name-color;
+        font-size: 11px;
+        letter-spacing: 0.165px;
+      }
+      
+      &:hover {
+        color: $font-color;
+        text-decoration: underline;
+      }
+    }
+  }
+
+  &__add-to-library {
+    position: relative;
+
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      background-size: contain;
+      background-image: url('../../../assets/img/icons/add.svg');
+    }
+  }
+
+  &__controls {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 40%;
+  }
+  
+  &__controls-buttons {
+    display: flex;
+    justify-content: space-between;
+    width: 224px;
+    height: 32px;
+    margin-bottom: 12px;
+
+  }
+
+  &__controls-button {
+    position: relative;
+
+    &--shuffle:after,
+    &--previous:after,
+    &--play:after,
+    &--next:after,
+    &--repeat:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      background-size: contain;
+    }
+
+    &--shuffle:after {
+      background-image: url('../../../assets/img/icons/random.svg');
+    }
+
+    &--previous:after {
+      background-image: url('../../../assets/img/icons/left.svg');
+    }
+
+    &--play:after {
+      background-image: url('../../../assets/img/icons/play.svg');
+    }
+
+    &--next:after {
+      background-image: url('../../../assets/img/icons/right.svg');
+    }
+
+    &--repeat:after {
+      background-image: url('../../../assets/img/icons/repeat.svg');
+    }
+  }
+
+  &__playback-bar {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    
+    &-progress-bar {
+      position: relative;
+      width: 100%;
+      height: 4px;
+      border-radius: 2px;
+      background-color: $progress-bar;
+      
+      &-state {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 4px;
+        border-radius: 2px;
+        max-width: 100%;
+        width: 10%;
+        background-color: #fff;
+      }
+    }
+
+    &-curent-time,
+    &-time-left {
+      font-size: 11px;
+      line-height: 16px;
+      letter-spacing: .015em;
+      min-width: 40px;
+      text-align: center;
+      color: $font-song-time-color;
+      user-select: none;
+    }
+
+    &:hover &-progress-bar-state {
+      background-color: $primary-color-contrast;
+    }
+  }
+  
+  
+  &__playback-settings {
+    width: 30%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    margin-right: 16px;
+    
+    &-song-list-button,
+    &-volume-button {
+      position: relative;
+    }
+
+    &-song-list-button:after,
+    &-volume-button:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      background-size: contain;
+    }
+
+    &-song-list-button:after {
+      background-image: url('../../../assets/img/icons/library.svg');
+    }
+    
+    &-volume-button:after {
+      background-image: url('../../../assets/img/icons/volume.svg');
+    }
+
+    &-volume-progress-bar {
+      position: relative;
+      width: 82px;
+      height: 4px;
+      border-radius: 2px;
+      background-color: $progress-bar;
+      margin-left: 2px;
+      cursor: pointer;
+
+      &-state {
+        position: absolute;
+        left: 0;
+        top: 0;
+        height: 4px;
+        border-radius: 2px;
+        max-width: 100%;
+        width: 100%;
+        background-color: #fff;
+      }
+
+      &:hover &-state {
+        background-color: $primary-color-contrast;
+      }
+    }
+  }
+}

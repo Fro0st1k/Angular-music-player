@@ -1,0 +1,23 @@
+@import 'src/scss/variables/colors';
+
+.content-title {
+  font-size: 32px;
+  line-height: 44px;
+  letter-spacing: -.005em;
+  font-weight: 600;
+  color: #fff;
+  text-transform: none;
+  margin: 24px 0;
+  text-align: center;
+  user-select: none;
+}
+
+.content-box {
+  
+  &__album-grid {
+    padding: 0 28px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+  }
+}

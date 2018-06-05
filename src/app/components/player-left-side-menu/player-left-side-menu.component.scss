@@ -1,0 +1,48 @@
+@import 'src/scss/variables/colors';
+@import 'src/scss/mixins/mixins';
+
+.player-left-side-menu {
+  width: 220px;
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  z-index: 100;
+  background-color: rgba(0,0,0,.5);
+  overflow: auto;
+  min-height: 0!important;
+  will-change: transform;
+
+  &__item {
+    padding-bottom: 5px;
+    padding-top: 10px;
+    line-height: 24px;
+    letter-spacing: 0.24px;
+
+    &-link {
+      color: $font-song-unactive-color;
+      display: inline-block;
+      @include set-animation(color, .2s, linear);
+
+      &--active {
+        color: $primary-color-contrast;
+      }
+    }
+
+    &-icon {
+      position: absolute;
+    }
+
+    &-text {
+      padding-left: 36px;
+    }
+
+    &:hover &-link:not(.player-left-side-menu__item-link--active) {
+      color: $font-color;
+    }
+  }
+
+  &__wrapper {
+    padding: 24px;
+  }
+ }

@@ -1,0 +1,83 @@
+{
+  "categories": [{
+    "name": "New Releases",
+    "albums":[{
+      "cover": "assets/img/album-covers/Violator.jpg",
+      "name": "Violator",
+      "autor": "Depeche Mode"
+    },
+    {
+      "cover": "assets/img/album-covers/SleepWellBeast.jpg",
+      "name": "Sleep Well Beast",
+      "autor": "The National"
+    },
+    {
+      "cover": "assets/img/album-covers/OneMoreLight.jpg",
+      "name": "One More Light",
+      "autor": "Linkin Park"
+    },
+    {
+      "cover": "assets/img/album-covers/Battles.jpg",
+      "name": "Battles",
+      "autor": "In Flames"
+    },
+    {
+      "cover": "assets/img/album-covers/TheLivingInfinite.jpg",
+      "name": "The Living Infinite",
+      "autor": "Soilwork"
+    },
+    {
+      "cover": "assets/img/album-covers/GUNSHIP.jpg",
+      "name": "GUNSHIP",
+      "autor": "Gunship"
+    },
+    {
+      "cover": "assets/img/album-covers/PermanentVacation.jpg",
+      "name": "Permanent Vacation",
+      "autor": "Aerosmith"
+    }]
+  },
+  {
+    "name": "Made For You",
+    "albums":[{
+      "cover": "assets/img/album-covers/Violator.jpg",
+      "name": "Violator",
+      "autor": "Depeche Mode"
+    },
+    {
+      "cover": "assets/img/album-covers/SleepWellBeast.jpg",
+      "name": "Sleep Well Beast",
+      "autor": "The National"
+    },
+    {
+      "cover": "assets/img/album-covers/OneMoreLight.jpg",
+      "name": "One More Light",
+      "autor": "Linkin Park"
+    },
+    {
+      "cover": "assets/img/album-covers/Battles.jpg",
+      "name": "Battles",
+      "autor": "In Flames"
+    },
+    {
+      "cover": "assets/img/album-covers/TheLivingInfinite.jpg",
+      "name": "The Living Infinite",
+      "autor": "Soilwork"
+    },
+    {
+      "cover": "assets/img/album-covers/GUNSHIP.jpg",
+      "name": "GUNSHIP",
+      "autor": "Gunship"
+    },
+    {
+      "cover": "assets/img/album-covers/PermanentVacation.jpg",
+      "name": "Permanent Vacation",
+      "autor": "Aerosmith"
+    },
+    {
+      "cover": "assets/img/album-covers/Violator.jpg",
+      "name": "Violator",
+      "autor": "Depeche Mode"
+    }]
+  }]
+}
