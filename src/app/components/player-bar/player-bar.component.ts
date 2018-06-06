@@ -7,6 +7,13 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 })
 
 export class PlayerBarComponent implements OnInit {
+
+  private refreshInterval: any;
+  //SongTime
+  @ViewChild('progressBar') progress: ElementRef;
+  @ViewChild('progressBarStatus') progressStatus: ElementRef;
+  private progressBar: HTMLElement;
+  private progressBarStatus: HTMLElement;
   //Volume
   @ViewChild('volumeBar') volume: ElementRef;
   @ViewChild('volumeStatus') volumeStatus: ElementRef;
@@ -20,10 +27,9 @@ export class PlayerBarComponent implements OnInit {
   private nowPlayingSongId: number;
   private currentVolume: number = 1;
 
-  private songList: object[] = [{
+  private songList: ISongInfo[] = [{
     "id": 1,
     "name": "Roupe",
-    "duration": 192,
     "artist": "In Flames",
     "cover": "../../../assets/img/album-covers/Battles.jpg",
     "src": "../../../assets/songs/1.mp3"
@@ -31,31 +37,31 @@ export class PlayerBarComponent implements OnInit {
   {
     "id": 2,
     "name": "Test song",
-    "duration": 212,
     "artist": "In Flames",
     "cover": "../../../assets/img/album-covers/Battles.jpg",
     "src": "../../../assets/songs/2.mp3"
   }];
 
-  public playingSong: object = {
-    "name": "",
-    "artist": "",
-    "cover": "",
-    "src": ""
-  };
+  public playingSong: ISongInfo;
 
   constructor() {}
 
   ngOnInit(): void {
-    this.audioContainer = this.audio.nativeElement;
+    //songTime
+    this.progressBar = this.progress.nativeElement;
+    this.progressBarStatus = this.progressStatus.nativeElement;
+    // volume
     this.volumeBar = this.volume.nativeElement;
     this.volumeStatusBar = this.volumeStatus.nativeElement;
+    // song
+    this.audioContainer = this.audio.nativeElement;
     this.setSongInfo();
   }
 
   playSong(): void {
     if (this.isPlaying) {
       this.pauseSong();
+      clearInterval(this.refreshInterval);
       return;
     }
 
@@ -63,6 +69,10 @@ export class PlayerBarComponent implements OnInit {
     setTimeout(() => {
       this.audioContainer.play();
     });
+
+    this.refreshInterval = setInterval(() => {
+      this.autoChangeSongBarStatus();
+    }, 1000)
   }
 
   pauseSong(): void {
@@ -101,7 +111,7 @@ export class PlayerBarComponent implements OnInit {
     this.playSong();
   }
 
-  setSongVolume(volume: number): void {
+  setVolume(volume: number): void {
     this.audioContainer.volume = volume;
   }
 
@@ -111,10 +121,10 @@ export class PlayerBarComponent implements OnInit {
 
   muteSong(): void {
     if (this.audioContainer.volume) {
-      this.setSongVolume(0);
+      this.setVolume(0);
       this.changeVolumeBarStatus(0);
     } else {
-      this.setSongVolume(this.currentVolume);
+      this.setVolume(this.currentVolume);
       this.changeVolumeBarStatus(this.currentVolume * 100);
     }
   }
@@ -129,6 +139,48 @@ export class PlayerBarComponent implements OnInit {
     const volumePersentage = mousePosition * 100 / volumeBarProperty.width;
     this.changeVolumeBarStatus(volumePersentage);
     this.setCurrentVolume(volumePersentage / 100);
-    this.setSongVolume(this.currentVolume);
+    this.setVolume(this.currentVolume);
+  }
+
+  getCurrentSongDuration(): number {
+    return this.audioContainer.duration;
+  }
+
+  setCurrentSongTime(time: number): void {
+    this.audioContainer.currentTime = time;
+  }
+
+  getCurrentSongTime(): number {
+    return this.audioContainer.currentTime;
+  }
+
+  changeSongBarStatus(persentage: number): void {
+    this.progressBarStatus.style.width = `${persentage}%`;
+  }
+
+  handChangeCurrentSongTime(event: MouseEvent): void {
+    const progressBarProperty = this.progressBar.getBoundingClientRect();
+    const mousePosition = event.pageX - progressBarProperty.left + pageXOffset;
+    const currentSongTimePersentage = mousePosition * 100 / progressBarProperty.width;
+    this.changeSongBarStatus(currentSongTimePersentage);
+    this.setCurrentSongTime(this.getCurrentSongDuration() * currentSongTimePersentage / 100);
+  }
+
+  changeSongBarStatusPerSecond(persentage: number): void {
+    let progressBarStatusWidth = parseFloat(this.progressBarStatus.style.width) || 0;
+    this.progressBarStatus.style.width = `${progressBarStatusWidth + persentage}%`;
+  }
+
+  autoChangeSongBarStatus(): void {
+    const dislocationPerSecond = 100 / this.getCurrentSongDuration();
+    this.changeSongBarStatusPerSecond(dislocationPerSecond);
   }
 }
+
+interface ISongInfo {
+  id,
+  name,
+  artist,
+  cover,
+  src
+} 
