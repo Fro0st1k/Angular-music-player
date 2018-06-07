@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { RequestsHubService } from '../../services/requests-hub.service';
-import { pipe} from 'rxjs';
+import { pipe } from 'rxjs';
 import { tap } from 'rxjs/operators';
 
 @Component({
@@ -26,6 +26,7 @@ export class PlayerBarComponent implements OnInit {
   // Play
   @ViewChild('audio') audio: ElementRef;
   private isPlaying = false;
+  private isMuted = false;
   private audioContainer: HTMLAudioElement;
   private nowPlayingSongId: number;
   private currentVolume = 1;
@@ -76,6 +77,7 @@ export class PlayerBarComponent implements OnInit {
   setSongInfo(id: number = 0): void {
     this.nowPlayingSongId = id;
     this.playingSong = this.songList[id];
+    this.playingSong.duration = this.convertSongTime(this.songList[id].duration);
   }
 
   playNextSong(): void {  // dry
@@ -86,7 +88,7 @@ export class PlayerBarComponent implements OnInit {
     } else {
       this.setSongInfo();
     }
-    this.isPlaying ? this.playSong() : null;
+    this.playSong();
   }
 
   playPreviousSong(): void { // dry
@@ -97,7 +99,7 @@ export class PlayerBarComponent implements OnInit {
     } else {
       this.setSongInfo();
     }
-    this.isPlaying ? this.playSong() : null;
+    this.playSong();
   }
 
   playSelectedSong(selectedSongId: number): void {
@@ -118,9 +120,11 @@ export class PlayerBarComponent implements OnInit {
     if (this.audioContainer.volume) {
       this.setVolume(0);
       this.changeVolumeBarStatus(0);
+      this.isMuted = true;
     } else {
       this.setVolume(this.currentVolume);
       this.changeVolumeBarStatus(this.currentVolume * 100);
+      this.isMuted = false;
     }
   }
 
@@ -163,12 +167,28 @@ export class PlayerBarComponent implements OnInit {
 
   changeSongBarStatusPerSecond(persentage: number): void {
     const progressBarStatusWidth = parseFloat(this.progressBarStatus.style.width) || 0;
+    if (this.audioContainer.ended) {
+      this.playNextSong();
+      return;
+    }
     this.progressBarStatus.style.width = `${progressBarStatusWidth + persentage}%`;
   }
 
   autoChangeSongBarStatus(): void {
     const dislocationPerSecond = 100 / this.getCurrentSongDuration();
     this.changeSongBarStatusPerSecond(dislocationPerSecond);
+  }
+
+  convertSongTime(duration = 0): string {
+    if (typeof duration == 'string') return duration;
+
+    let minutes: string =  `${~~(duration / 60)}`;
+    let seconds: string =  `${duration % 60}`;
+
+    if (minutes.length < 2) minutes = `0${minutes}`;
+    if (seconds.length < 2) seconds = `0${seconds}`;
+
+    return `${minutes}:${seconds}`;
   }
 }
 
@@ -178,4 +198,5 @@ interface ISongInfo {
   artist;
   cover;
   src;
+  duration;
 }

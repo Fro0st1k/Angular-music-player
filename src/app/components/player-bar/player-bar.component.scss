@@ -123,6 +123,10 @@
       background-image: url('../../../assets/img/icons/play.svg');
     }
 
+    &--pause:after {
+      background-image: url('../../../assets/img/icons/pause.svg');
+    }
+
     &--next:after {
       background-image: url('../../../assets/img/icons/right.svg');
     }
@@ -203,6 +207,10 @@
     
     &-volume-button:after {
       background-image: url('../../../assets/img/icons/volume.svg');
+    }
+
+    &-volume-button-off:after {
+      background-image: url('../../../assets/img/icons/volumeoff.svg');
     }
 
     &-volume-progress-bar {

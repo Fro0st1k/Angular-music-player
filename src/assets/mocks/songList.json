@@ -4,20 +4,23 @@
     "name": "Test song 1",
     "artist": "Test artist 1",
     "cover": "../../../assets/img/album-covers/Battles.jpg",
-    "src": "../../../assets/songs/1.mp3"
+    "src": "../../../assets/songs/1.mp3",
+    "duration": 182
   }, 
   {
     "id": 2,
     "name": "Test song 2",
     "artist": "Test artist 2",
     "cover": "../../../assets/img/album-covers/GUNSHIP.jpg",
-    "src": "../../../assets/songs/2.mp3"
+    "src": "../../../assets/songs/2.mp3",
+    "duration": 163
   },
   {
     "id": 2,
     "name": "Test song 3",
     "artist": "Test artist 3",
     "cover": "../../../assets/img/album-covers/OneMoreLight.jpg",
-    "src": "../../../assets/songs/3.mp3"
+    "src": "../../../assets/songs/3.mp3",
+    "duration": 202
   }]
 }

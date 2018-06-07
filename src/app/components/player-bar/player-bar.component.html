@@ -19,7 +19,7 @@
     <div class="music-player__controls-buttons">
       <button class="music-player__controls-button music-player__controls-button--shuffle control-button"></button>
       <button (click)="playPreviousSong()" class="music-player__controls-button music-player__controls-button--previous control-button"></button>
-      <button (click)="playSong()" class="music-player__controls-button music-player__controls-button--play control-button"></button>
+      <button (click)="playSong()" [ngClass]="{'music-player__controls-button--pause' : isPlaying}" class="music-player__controls-button music-player__controls-button--play control-button"></button>
       <button (click)="playNextSong()" class="music-player__controls-button music-player__controls-button--next control-button"></button>
       <button class="music-player__controls-button music-player__controls-button--repeat control-button"></button>
     </div>
@@ -28,12 +28,12 @@
       <div (click)="handChangeCurrentSongTime($event)" #progressBar class="music-player__playback-bar-progress-bar">
         <div #progressBarStatus class="music-player__playback-bar-progress-bar-state"></div>
       </div>
-      <div class="music-player__playback-bar-time-left">3:20</div>
+      <div class="music-player__playback-bar-time-left">{{playingSong?.duration}}</div>
     </div>
   </div>
   <div class="music-player__playback-settings">
     <button class="music-player__playback-settings-song-list-button control-button"></button>
-    <button (click)="muteSong()" class="music-player__playback-settings-volume-button control-button"></button>
+    <button (click)="muteSong()" [ngClass]="{'music-player__playback-settings-volume-button-off' : isMuted}" class="music-player__playback-settings-volume-button control-button"></button>
     <div #volumeBar (click)="handChangeVolume($event)" class="music-player__playback-settings-volume-progress-bar">
       <div #volumeStatus class="music-player__playback-settings-volume-progress-bar-state"></div>
     </div>

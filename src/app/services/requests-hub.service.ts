@@ -49,4 +49,5 @@ interface ISongInfo {
   artist;
   cover;
   src;
+  duration;
 }
