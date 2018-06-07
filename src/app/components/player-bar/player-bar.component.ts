@@ -1,67 +1,59 @@
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
+import { RequestsHubService } from '../../services/requests-hub.service';
+import { pipe} from 'rxjs';
+import { tap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-player-bar',
   templateUrl: './player-bar.component.html',
-  styleUrls: ['./player-bar.component.scss']
+  styleUrls: ['./player-bar.component.scss'],
+  providers: [RequestsHubService]
 })
 
 export class PlayerBarComponent implements OnInit {
 
   private refreshInterval: any;
-  //SongTime
+  // SongTime
   @ViewChild('progressBar') progress: ElementRef;
   @ViewChild('progressBarStatus') progressStatus: ElementRef;
   private progressBar: HTMLElement;
   private progressBarStatus: HTMLElement;
-  //Volume
+  // Volume
   @ViewChild('volumeBar') volume: ElementRef;
   @ViewChild('volumeStatus') volumeStatus: ElementRef;
   private volumeBar: HTMLElement;
   private volumeStatusBar: HTMLElement;
-  
-  //Play
+  // Play
   @ViewChild('audio') audio: ElementRef;
-  private isPlaying: boolean = false;
+  private isPlaying = false;
   private audioContainer: HTMLAudioElement;
   private nowPlayingSongId: number;
-  private currentVolume: number = 1;
+  private currentVolume = 1;
 
-  private songList: ISongInfo[] = [{
-    "id": 1,
-    "name": "Roupe",
-    "artist": "In Flames",
-    "cover": "../../../assets/img/album-covers/Battles.jpg",
-    "src": "../../../assets/songs/1.mp3"
-  },
-  {
-    "id": 2,
-    "name": "Test song",
-    "artist": "In Flames",
-    "cover": "../../../assets/img/album-covers/Battles.jpg",
-    "src": "../../../assets/songs/2.mp3"
-  }];
-
+  private songList: ISongInfo[];
   public playingSong: ISongInfo;
 
-  constructor() {}
+  constructor(private requestsHubService: RequestsHubService) {}
 
   ngOnInit(): void {
-    //songTime
+    // fetch data
+    this.requestsHubService.getSongList()
+      .subscribe(data => {
+        this.songList = data.songList;
+        this.setSongInfo();
+        this.audioContainer = this.audio.nativeElement;
+      });
+    // songTime
     this.progressBar = this.progress.nativeElement;
     this.progressBarStatus = this.progressStatus.nativeElement;
     // volume
     this.volumeBar = this.volume.nativeElement;
     this.volumeStatusBar = this.volumeStatus.nativeElement;
-    // song
-    this.audioContainer = this.audio.nativeElement;
-    this.setSongInfo();
   }
 
   playSong(): void {
     if (this.isPlaying) {
       this.pauseSong();
-      clearInterval(this.refreshInterval);
       return;
     }
 
@@ -72,10 +64,11 @@ export class PlayerBarComponent implements OnInit {
 
     this.refreshInterval = setInterval(() => {
       this.autoChangeSongBarStatus();
-    }, 1000)
+    }, 1000);
   }
 
   pauseSong(): void {
+    clearInterval(this.refreshInterval);
     this.audioContainer.pause();
     this.isPlaying = false;
   }
@@ -85,24 +78,26 @@ export class PlayerBarComponent implements OnInit {
     this.playingSong = this.songList[id];
   }
 
-  playNextSong(): void {
+  playNextSong(): void {  // dry
     this.pauseSong();
+    this.changeSongBarStatus(0);
     if (this.nowPlayingSongId < this.songList.length) {
       this.setSongInfo(++this.nowPlayingSongId);
     } else {
       this.setSongInfo();
     }
-    this.playSong();
+    this.isPlaying ? this.playSong() : null;
   }
 
-  playPreviousSong(): void {
+  playPreviousSong(): void { // dry
     this.pauseSong();
+    this.changeSongBarStatus(0);
     if (this.nowPlayingSongId > 0) {
       this.setSongInfo(--this.nowPlayingSongId);
     } else {
       this.setSongInfo();
     }
-    this.playSong();
+    this.isPlaying ? this.playSong() : null;
   }
 
   playSelectedSong(selectedSongId: number): void {
@@ -167,7 +162,7 @@ export class PlayerBarComponent implements OnInit {
   }
 
   changeSongBarStatusPerSecond(persentage: number): void {
-    let progressBarStatusWidth = parseFloat(this.progressBarStatus.style.width) || 0;
+    const progressBarStatusWidth = parseFloat(this.progressBarStatus.style.width) || 0;
     this.progressBarStatus.style.width = `${progressBarStatusWidth + persentage}%`;
   }
 
@@ -178,9 +173,9 @@ export class PlayerBarComponent implements OnInit {
 }
 
 interface ISongInfo {
-  id,
-  name,
-  artist,
-  cover,
-  src
-} 
+  id;
+  name;
+  artist;
+  cover;
+  src;
+}

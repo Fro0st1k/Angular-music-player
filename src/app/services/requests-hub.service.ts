@@ -10,6 +10,7 @@ export class RequestsHubService {
   private artistsUrl: string = 'assets/mocks/artists.json';
   private albumsUrl: string = 'assets/mocks/albums.json';
   private categoriesUrl: string = 'assets/mocks/categories.json';
+  private getSongListUrl: string = 'assets/mocks/songList.json';
 
   constructor(private http: HttpClient) { }
 
@@ -19,6 +20,10 @@ export class RequestsHubService {
 
   getCategories() {
     return this.http.get<ICategories>(this.categoriesUrl);
+  }
+
+  getSongList() {
+    return this.http.get<ISongList>(this.getSongListUrl);
   }
 }
 
@@ -32,4 +37,16 @@ interface ICategories {
 
 interface IAlbums {
   albums: object[];
+}
+
+interface ISongList {
+  songList: ISongInfo[];
+}
+
+interface ISongInfo {
+  id;
+  name;
+  artist;
+  cover;
+  src;
 }

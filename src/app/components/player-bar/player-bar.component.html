@@ -2,14 +2,14 @@
   <div class="music-player__now-playing">
     <div class="music-player__song-info">
       <div class="music-player__song-info-cover">
-        <img class="music-player__song-info-cover-img" [src]="playingSong.cover" alt="">
+        <img class="music-player__song-info-cover-img" src={{playingSong?.cover}} alt="">
       </div>
       <div class="music-player__song-info-about">
         <div class="music-player__song-info-name">
-        <a class="music-player__song-info-link music-player__song-info-link--song-name" href="#">{{playingSong.name}}</a>
+        <a class="music-player__song-info-link music-player__song-info-link--song-name" href="#">{{playingSong?.name}}</a>
         </div>
         <div class="music-player__song-info-artist">
-          <a class="music-player__song-info-link music-player__song-info-link--artist-name" href="#">{{playingSong.artist}}</a>
+          <a class="music-player__song-info-link music-player__song-info-link--artist-name" href="#">{{playingSong?.artist}}</a>
         </div>
       </div>
     </div>
@@ -40,4 +40,4 @@
   </div>
 </div>
 
-<audio #audio class="music-player__audio-container" [src]="playingSong.src"></audio>
+<audio #audio class="music-player__audio-container" src={{playingSong?.src}}></audio>

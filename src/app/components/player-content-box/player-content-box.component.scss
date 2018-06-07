@@ -1,4 +1,5 @@
 @import 'src/scss/variables/colors';
+@import 'src/scss/mixins/mixins';
 
 .content-title {
   font-size: 32px;
@@ -16,8 +17,20 @@
   
   &__album-grid {
     padding: 0 28px;
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: flex-start;
+    display: grid;
+    grid-template-columns: repeat(6, auto);
+
+    @include r(1340) {
+      grid-template-columns: repeat(5, auto);
+    }
+
+    @include r(1180) {
+      grid-template-columns: repeat(4, auto);
+    }
+
+    @include r(1010) {
+      grid-template-columns: repeat(3, auto);
+    }
+
   }
 }
