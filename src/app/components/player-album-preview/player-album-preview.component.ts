@@ -10,7 +10,7 @@ export class PlayerAlbumPreviewComponent implements OnInit {
   @Input() album;
 
   constructor() { }
-  
+
   ngOnInit() {
 
   }

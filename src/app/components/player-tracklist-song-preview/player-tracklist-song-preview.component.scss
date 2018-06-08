@@ -1,0 +1,35 @@
+@import 'src/scss/variables/colors';
+
+.tracklist__song-preview {
+  margin-right: 8px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: $font-color;
+  
+  &-cover {
+    max-width: 260px;
+    max-height: 260px;
+    min-width: 165px;
+    min-height: 165px;
+    width: 100%;
+    height: 100%;
+    background-color: $primary-player-color;
+  }
+  
+  &-title {
+    font-size: 28px;
+    line-height: 36px;
+    margin-top: 8px;
+  }
+  
+  &-play {
+    margin-top: 16px;
+    background-color: $primary-color-contrast;
+    border: none;
+    width: 130px;
+    height: 40px;
+    border-radius: 50px;
+    cursor: pointer;
+  }
+}

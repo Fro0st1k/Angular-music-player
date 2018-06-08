@@ -17,6 +17,7 @@ import { PlayerTopMenuComponent } from './components/player-top-menu/player-top-
 import { PlayerContentBoxComponent } from './components/player-content-box/player-content-box.component';
 import { PlayerAlbumPreviewComponent } from './components/player-album-preview/player-album-preview.component';
 import { PlayerSearchComponent } from './components/player-search/player-search.component';
+import { PlayerTracklistSongPreviewComponent } from './components/player-tracklist-song-preview/player-tracklist-song-preview.component';
 
 @NgModule({
   declarations: [
@@ -32,7 +33,8 @@ import { PlayerSearchComponent } from './components/player-search/player-search.
     PlayerTopMenuComponent,
     PlayerContentBoxComponent,
     PlayerAlbumPreviewComponent,
-    PlayerSearchComponent
+    PlayerSearchComponent,
+    PlayerTracklistSongPreviewComponent
   ],
   imports: [
     BrowserModule,
