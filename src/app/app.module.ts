@@ -18,6 +18,7 @@ import { PlayerContentBoxComponent } from './components/player-content-box/playe
 import { PlayerAlbumPreviewComponent } from './components/player-album-preview/player-album-preview.component';
 import { PlayerSearchComponent } from './components/player-search/player-search.component';
 import { PlayerTracklistSongPreviewComponent } from './components/player-tracklist-song-preview/player-tracklist-song-preview.component';
+import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 
 @NgModule({
   declarations: [
@@ -34,7 +35,8 @@ import { PlayerTracklistSongPreviewComponent } from './components/player-trackli
     PlayerContentBoxComponent,
     PlayerAlbumPreviewComponent,
     PlayerSearchComponent,
-    PlayerTracklistSongPreviewComponent
+    PlayerTracklistSongPreviewComponent,
+    ConvertSecondsPipe
   ],
   imports: [
     BrowserModule,

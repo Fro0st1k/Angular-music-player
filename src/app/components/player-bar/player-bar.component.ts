@@ -30,7 +30,7 @@ export class PlayerBarComponent implements OnInit {
   private audioContainer: HTMLAudioElement;
   private nowPlayingSongId: number;
   private currentVolume = 1;
-
+  private currentSongTime = 0;
   private songList: ISongInfo[];
   public playingSong: ISongInfo;
 
@@ -65,6 +65,7 @@ export class PlayerBarComponent implements OnInit {
 
     this.refreshInterval = setInterval(() => {
       this.autoChangeSongBarStatus();
+      this.refreshCurrentSongTime();
     }, 1000);
   }
 
@@ -77,7 +78,7 @@ export class PlayerBarComponent implements OnInit {
   setSongInfo(id: number = 0): void {
     this.nowPlayingSongId = id;
     this.playingSong = this.songList[id];
-    this.playingSong.duration = this.convertSongTime(this.songList[id].duration);
+    this.playingSong.duration = this.songList[id].duration;
   }
 
   playNextSong(): void {  // dry
@@ -146,11 +147,16 @@ export class PlayerBarComponent implements OnInit {
   }
 
   setCurrentSongTime(time: number): void {
+    this.currentSongTime = time;
     this.audioContainer.currentTime = time;
   }
 
   getCurrentSongTime(): number {
     return this.audioContainer.currentTime;
+  }
+
+  refreshCurrentSongTime(): void {
+    this.currentSongTime = this.getCurrentSongTime();
   }
 
   changeSongBarStatus(persentage: number): void {
@@ -179,17 +185,6 @@ export class PlayerBarComponent implements OnInit {
     this.changeSongBarStatusPerSecond(dislocationPerSecond);
   }
 
-  convertSongTime(duration = 0): string {
-    if (typeof duration == 'string') return duration;
-
-    let minutes: string =  `${~~(duration / 60)}`;
-    let seconds: string =  `${duration % 60}`;
-
-    if (minutes.length < 2) minutes = `0${minutes}`;
-    if (seconds.length < 2) seconds = `0${seconds}`;
-
-    return `${minutes}:${seconds}`;
-  }
 }
 
 interface ISongInfo {
