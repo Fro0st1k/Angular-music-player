@@ -3,10 +3,16 @@
   <input #searchBox class="player-search__input" type="text" placeholder="Start typing...">
 </div>
 
-<div class="player-search__content-box">
-  <app-player-album-preview *ngFor="let album of albums" [album]="album"></app-player-album-preview>
+<div class="player-search__content-box-albums">
+  <h1 class="player-search__content-title" *ngIf="albums.length">Albums</h1>
+  <div class="player-search__content-box-wrapper">
+    <app-player-album-preview *ngFor="let album of albums" [album]="album"></app-player-album-preview>
+  </div>
 </div>
 
-
+<div class="player-search__content-box-songs">
+  <h1 class="player-search__content-title" *ngIf="albums.length">Songs</h1>
+  <app-player-song *ngFor="let song of albums" [song]="song"></app-player-song>
+</div>
 
 

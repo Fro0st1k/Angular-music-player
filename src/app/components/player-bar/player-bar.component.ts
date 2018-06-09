@@ -6,8 +6,7 @@ import { tap } from 'rxjs/operators';
 @Component({
   selector: 'app-player-bar',
   templateUrl: './player-bar.component.html',
-  styleUrls: ['./player-bar.component.scss'],
-  providers: [RequestsHubService]
+  styleUrls: ['./player-bar.component.scss']
 })
 
 export class PlayerBarComponent implements OnInit {

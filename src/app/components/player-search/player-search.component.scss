@@ -25,9 +25,28 @@
     border: none;
   }
 
-  &__content-box {
+  &__content-title {
+    color: $font-color;
+    font-size: 36px;
+    text-align: center;
+    padding: 5px;
+    
+  }
+
+  &__content-box-wrapper {
     display: flex;
-    justify-content: flex-start;
+    flex-wrap: wrap;
+  }
+
+  &__content-box-albums {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+
+  &__content-box-songs {
+    display: flex;
+    flex-direction: column;
     flex-wrap: wrap;
     padding: 20px;
   }

@@ -6,5 +6,5 @@
     <div class="tracklist__song-info-name">{{song.name}}</div>
     <div class="tracklist__song-info-album">{{song.album}}</div>
   </div>
-  <div class="tracklist__song-full-time">{{song.duration}}</div>
+  <div class="tracklist__song-full-time">{{song.duration | convertSeconds}}</div>
 </div>
