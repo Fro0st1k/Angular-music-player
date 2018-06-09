@@ -18,7 +18,10 @@ import { PlayerContentBoxComponent } from './components/player-content-box/playe
 import { PlayerAlbumPreviewComponent } from './components/player-album-preview/player-album-preview.component';
 import { PlayerSearchComponent } from './components/player-search/player-search.component';
 import { PlayerTracklistSongPreviewComponent } from './components/player-tracklist-song-preview/player-tracklist-song-preview.component';
+
 import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
+
+import { RequestsHubService } from './services/requests-hub.service';
 
 @NgModule({
   declarations: [
@@ -44,7 +47,7 @@ import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
     RoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [],
+  providers: [RequestsHubService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

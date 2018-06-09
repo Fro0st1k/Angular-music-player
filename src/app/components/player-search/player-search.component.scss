@@ -1,4 +1,5 @@
 @import 'src/scss/variables/colors';
+@import 'src/scss/mixins/mixins';
 
 .player-search {
   background-color: $primary-player-color;
@@ -22,5 +23,12 @@
     width: 100%;
     background-color: transparent;
     border: none;
+  }
+
+  &__content-box {
+    display: flex;
+    justify-content: flex-start;
+    flex-wrap: wrap;
+    padding: 20px;
   }
 }

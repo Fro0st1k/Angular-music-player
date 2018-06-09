@@ -1,4 +1,12 @@
 <div class="player-search">
   <h4 class="player-search__title">Search for an Artist, Song, Album or Playlist</h4>
-  <input class="player-search__input" type="text" placeholder="Start typing...">
+  <input #searchBox class="player-search__input" type="text" placeholder="Start typing...">
 </div>
+
+<div class="player-search__content-box">
+  <app-player-album-preview *ngFor="let album of albums" [album]="album"></app-player-album-preview>
+</div>
+
+
+
+
