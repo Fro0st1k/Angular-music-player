@@ -17,7 +17,11 @@ export class PlayerSearchComponent implements OnInit {
   constructor(private requestsHubService: RequestsHubService) { }
 
   ngOnInit() {
-    const searchEvent = fromEvent(this.searchBox.nativeElement, 'input').pipe(
+    this.startWatchigInput().subscribe(data => this.albums.push(data));
+  }
+
+  startWatchigInput() {
+    return fromEvent(this.searchBox.nativeElement, 'input').pipe(
       map((e: KeyboardEvent) => e.target.value.toLowerCase()),
       filter(text => text.length > 3),
       debounceTime(20),
@@ -25,9 +29,5 @@ export class PlayerSearchComponent implements OnInit {
       tap(() => this.albums = []),
       switchMap((text) => this.requestsHubService.getFoundAlbums(text))
     );
-
-    searchEvent.subscribe(data => {
-      this.albums.push(data);
-    });
   }
 }
