@@ -191,7 +191,7 @@ interface ISongInfo {
   id;
   name;
   artist;
-  album;
+  albumName;
   cover;
   src;
   duration;

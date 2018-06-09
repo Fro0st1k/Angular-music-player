@@ -29,7 +29,7 @@ export class RequestsHubService {
   getFoundAlbums(inputValue) {
     return this.getSongList().pipe(
       switchMap(data => data.songList),
-      filter(song => song.name.toLowerCase().indexOf(inputValue) !== -1),
+      filter(song => song.albumName.toLowerCase().indexOf(inputValue) !== -1),
     );
   }
 }
@@ -54,7 +54,7 @@ interface ISongInfo {
   id;
   name;
   artist;
-  album;
+  albumName;
   cover;
   src;
   duration;

@@ -3,37 +3,37 @@
     "name": "New Releases",
     "albums":[{
       "cover": "assets/img/album-covers/Violator.jpg",
-      "name": "Violator",
+      "albumName": "Violator",
       "autor": "Depeche Mode"
     },
     {
       "cover": "assets/img/album-covers/SleepWellBeast.jpg",
-      "name": "Sleep Well Beast",
+      "albumName": "Sleep Well Beast",
       "autor": "The National"
     },
     {
       "cover": "assets/img/album-covers/OneMoreLight.jpg",
-      "name": "One More Light",
+      "albumName": "One More Light",
       "autor": "Linkin Park"
     },
     {
       "cover": "assets/img/album-covers/Battles.jpg",
-      "name": "Battles",
+      "albumName": "Battles",
       "autor": "In Flames"
     },
     {
       "cover": "assets/img/album-covers/TheLivingInfinite.jpg",
-      "name": "The Living Infinite",
+      "albumName": "The Living Infinite",
       "autor": "Soilwork"
     },
     {
       "cover": "assets/img/album-covers/GUNSHIP.jpg",
-      "name": "GUNSHIP",
+      "albumName": "GUNSHIP",
       "autor": "Gunship"
     },
     {
       "cover": "assets/img/album-covers/PermanentVacation.jpg",
-      "name": "Permanent Vacation",
+      "albumName": "Permanent Vacation",
       "autor": "Aerosmith"
     }]
   },
@@ -41,42 +41,42 @@
     "name": "Made For You",
     "albums":[{
       "cover": "assets/img/album-covers/Violator.jpg",
-      "name": "Violator",
+      "albumName": "Violator",
       "autor": "Depeche Mode"
     },
     {
       "cover": "assets/img/album-covers/SleepWellBeast.jpg",
-      "name": "Sleep Well Beast",
+      "albumName": "Sleep Well Beast",
       "autor": "The National"
     },
     {
       "cover": "assets/img/album-covers/OneMoreLight.jpg",
-      "name": "One More Light",
+      "albumName": "One More Light",
       "autor": "Linkin Park"
     },
     {
       "cover": "assets/img/album-covers/Battles.jpg",
-      "name": "Battles",
+      "albumName": "Battles",
       "autor": "In Flames"
     },
     {
       "cover": "assets/img/album-covers/TheLivingInfinite.jpg",
-      "name": "The Living Infinite",
+      "albumName": "The Living Infinite",
       "autor": "Soilwork"
     },
     {
       "cover": "assets/img/album-covers/GUNSHIP.jpg",
-      "name": "GUNSHIP",
+      "albumName": "GUNSHIP",
       "autor": "Gunship"
     },
     {
       "cover": "assets/img/album-covers/PermanentVacation.jpg",
-      "name": "Permanent Vacation",
+      "albumName": "Permanent Vacation",
       "autor": "Aerosmith"
     },
     {
       "cover": "assets/img/album-covers/Violator.jpg",
-      "name": "Violator",
+      "albumName": "Violator",
       "autor": "Depeche Mode"
     }]
   }]
