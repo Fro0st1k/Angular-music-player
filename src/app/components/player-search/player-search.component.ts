@@ -12,19 +12,21 @@ import { RequestsHubService } from '../../services/requests-hub.service';
 
 export class PlayerSearchComponent implements OnInit {
   private albums = [];
+  private searchInput: HTMLInputElement;
   @ViewChild('searchBox') searchBox: ElementRef;
 
   constructor(private requestsHubService: RequestsHubService) { }
 
   ngOnInit() {
+    this.searchInput = this.searchBox.nativeElement;
     this.startWatchigInput().subscribe(data => this.albums.push(data));
   }
 
   startWatchigInput() {
-    return fromEvent(this.searchBox.nativeElement, 'input').pipe(
-      map((e: KeyboardEvent) => e.target.value.toLowerCase()),
+    return fromEvent(this.searchInput, 'input').pipe(
+      map((e: KeyboardEvent) => this.searchInput.value.toLowerCase()),
       filter(text => text.length > 3),
-      debounceTime(20),
+      debounceTime(30),
       distinctUntilChanged(),
       tap(() => this.albums = []),
       switchMap((text) => this.requestsHubService.getFoundAlbums(text))
