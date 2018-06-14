@@ -1,7 +1,10 @@
 <app-player-left-side-menu></app-player-left-side-menu>
 <div class="content">
   <div class="content-wrapper">
-    <router-outlet></router-outlet>
+    <app-player-top-menu></app-player-top-menu>
+    <div [@routeAnimation]="prepRouteState(routerOutlet)">
+      <router-outlet #routerOutlet="outlet"></router-outlet>
+    </div>
   </div>
 </div>
 <app-player-bar></app-player-bar>

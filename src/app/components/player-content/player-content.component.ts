@@ -10,12 +10,7 @@ import { RequestsHubService } from '../../services/requests-hub.service';
 
 export class PlayerContentComponent implements OnInit {
 
-  
   constructor(private requestsHubService: RequestsHubService) { }
-  ngOnInit() {
-    // this.requestsHubService.getArtists().subscribe(data => {
-    //   console.log(data);
-    // });
-  }
 
+  ngOnInit() {}
 }

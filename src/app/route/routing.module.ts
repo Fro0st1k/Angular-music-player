@@ -9,10 +9,10 @@ import { PlayerDiscoverComponent } from '../components/player-discover/player-di
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-  { path: 'home', component: PlayerContentComponent, pathMatch: 'full' },
-  { path: 'search', component: PlayerSearchComponent, pathMatch: 'full' },
-  { path: 'library', component: PlayerLibraryComponent, pathMatch: 'full' },
-  { path: 'discover', component: PlayerDiscoverComponent, pathMatch: 'full' },
+  { path: 'home', component: PlayerContentComponent, pathMatch: 'full', data: { animation: 'home' }} ,
+  { path: 'search', component: PlayerSearchComponent, pathMatch: 'full', data: { animation: 'search' }},
+  { path: 'library', component: PlayerLibraryComponent, pathMatch: 'full', data: { animation: 'library' }},
+  { path: 'discover', component: PlayerDiscoverComponent, pathMatch: 'full', data: { animation: 'discover' }},
   { path: '**', redirectTo: 'home' , pathMatch: 'full' }
 ];
 
