@@ -30,7 +30,7 @@ export class PlayerBarComponent implements OnInit {
   private nowPlayingSongId: number;
   private currentVolume = 1;
   private currentSongTime = 0;
-  private songList: ISongInfo[];
+  public songList: ISongInfo[];
   public playingSong: ISongInfo;
 
   constructor(private requestsHubService: RequestsHubService) {}
