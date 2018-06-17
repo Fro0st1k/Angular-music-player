@@ -16,7 +16,6 @@ export class PlayerContentBoxComponent implements OnInit {
   ngOnInit() {
     this.requestsHubService.getCategories().subscribe(data => {
       this.categories = data.categories;
-      console.log(data.categories);
     });
   }
 

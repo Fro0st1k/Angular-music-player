@@ -1,6 +1,6 @@
 {
   "songList": [{
-    "id": 1,
+    "id": 0,
     "name": "Test song 1",
     "artist": "Test artist 1",
     "albumName": "The future",
@@ -9,7 +9,7 @@
     "duration": 182
   }, 
   {
-    "id": 2,
+    "id": 1,
     "name": "Test song 2",
     "artist": "Test artist 2",
     "albumName": "The zone",
@@ -24,6 +24,15 @@
     "albumName": "album of faith",
     "cover": "../../../assets/img/album-covers/OneMoreLight.jpg",
     "src": "../../../assets/songs/3.mp3",
+    "duration": 202
+  },
+  {
+    "id": 3,
+    "name": "Test song 4",
+    "artist": "Test artist 4",
+    "albumName": "album of faith",
+    "cover": "../../../assets/img/album-covers/OneMoreLight.jpg",
+    "src": "../../../assets/songs/4.mp3",
     "duration": 202
   }]
 }

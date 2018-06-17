@@ -22,6 +22,7 @@ import { PlayerTracklistSongPreviewComponent } from './components/player-trackli
 import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 
 import { RequestsHubService } from './services/requests-hub.service';
+import { ShareService } from './services/share.service';
 
 @NgModule({
   declarations: [
@@ -47,7 +48,10 @@ import { RequestsHubService } from './services/requests-hub.service';
     RoutingModule,
     BrowserAnimationsModule
   ],
-  providers: [RequestsHubService],
+  providers: [
+    RequestsHubService, 
+    ShareService
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -1,7 +1,7 @@
+import { switchMap } from 'rxjs/operators';
 import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
-import { RequestsHubService } from '../../services/requests-hub.service';
-import { pipe } from 'rxjs';
-import { tap } from 'rxjs/operators';
+
+import { ShareService } from './../../services/share.service';
 
 @Component({
   selector: 'app-player-bar',
@@ -33,16 +33,23 @@ export class PlayerBarComponent implements OnInit {
   public songList: ISongInfo[];
   public playingSong: ISongInfo;
 
-  constructor(private requestsHubService: RequestsHubService) {}
+  constructor(
+    private shareService: ShareService
+  ) { }
 
   ngOnInit(): void {
     // fetch data
-    this.requestsHubService.getSongList()
-      .subscribe(data => {
+    this.shareService.songList
+      .pipe(switchMap(data => data))
+      .subscribe((data: ISongList) => {
         this.songList = data.songList;
         this.setSongInfo();
         this.audioContainer = this.audio.nativeElement;
       });
+
+    this.shareService.notifyPlaySong.subscribe(id => {
+      this.playSelectedSong(id);
+    })
     // songTime
     this.progressBar = this.progress.nativeElement;
     this.progressBarStatus = this.progressStatus.nativeElement;
@@ -58,6 +65,9 @@ export class PlayerBarComponent implements OnInit {
     }
 
     this.isPlaying = true;
+    this.shareService.changeSongStatus(true);
+    this.shareService.sendNewSongId(this.nowPlayingSongId);
+
     setTimeout(() => {
       this.audioContainer.play();
     });
@@ -103,6 +113,15 @@ export class PlayerBarComponent implements OnInit {
   }
 
   playSelectedSong(selectedSongId: number): void {
+    if (this.isPlaying && selectedSongId === this.shareService.currentSongId) {
+      this.pauseSong();
+      return;
+    }
+
+    if (selectedSongId !== this.shareService.currentSongId) {
+      this.changeSongBarStatus(0);
+    }
+
     this.pauseSong();
     this.setSongInfo(selectedSongId);
     this.playSong();
@@ -194,4 +213,8 @@ interface ISongInfo {
   cover;
   src;
   duration;
+}
+
+interface ISongList {
+  songList: ISongInfo[];
 }

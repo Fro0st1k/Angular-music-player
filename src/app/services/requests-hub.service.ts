@@ -19,10 +19,12 @@ export class RequestsHubService {
   }
 
   getCategories() {
+    console.log('fetch categories');
     return this.http.get<ICategories>(this.categoriesUrl);
   }
 
   getSongList() {
+    console.log('fetch song list');
     return this.http.get<ISongList>(this.getSongListUrl);
   }
 

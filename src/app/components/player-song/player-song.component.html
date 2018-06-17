@@ -1,10 +1,8 @@
 <div class="tracklist__song" [ngClass]="{'tracklist__song--playing' : isPlaying}">
-  <button class="tracklist__song-play control-button">
-
-  </button>
+  <button class="tracklist__song-play control-button" (click)="playSong(song.id)"></button>
   <div class="tracklist__song-info">
-    <div class="tracklist__song-info-name">{{song.name}}</div>
-    <div class="tracklist__song-info-album">{{song.albumName}}</div>
+    <div class="tracklist__song-info-name">{{song?.name}}</div>
+    <div class="tracklist__song-info-album">{{song?.albumName}}</div>
   </div>
-  <div class="tracklist__song-full-time">{{song.duration | convertSeconds}}</div>
+  <div class="tracklist__song-full-time">{{song?.duration | convertSeconds}}</div>
 </div>

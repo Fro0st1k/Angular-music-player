@@ -1,7 +1,7 @@
 <div class="library">
   <h1 class="content-title">Play Queue</h1>
-  <div class="tracklist">
-    <app-player-tracklist-song-preview></app-player-tracklist-song-preview>
+  <div class="tracklist" *ngIf="songList?.length > 0">
+    <app-player-tracklist-song-preview [currentSong]="currentSong"></app-player-tracklist-song-preview>
     <div class="tracklist__song-list">
       <app-player-song *ngFor="let song of songList" [song]="song"></app-player-song>
     </div>
