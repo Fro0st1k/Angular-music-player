@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerContentBoxComponent } from './player-content-box.component';
 
 describe('PlayerContentBoxComponent', () => {

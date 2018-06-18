@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-player-content',
@@ -7,9 +7,4 @@ import { Component, OnInit } from '@angular/core';
   providers: []
 })
 
-export class PlayerContentComponent implements OnInit {
-
-  constructor() { }
-
-  ngOnInit() {}
-}
+export class PlayerContentComponent {}

@@ -37,6 +37,11 @@
 
   &--playing {
     color: $primary-color-contrast;
+
+    // &:hover .tracklist__song-play {
+    //   background: url('../../../assets/img/icons/pause2.svg');
+    //   background-size: contain;
+    // }
   }
 
   &:hover {

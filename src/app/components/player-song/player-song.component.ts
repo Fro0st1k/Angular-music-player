@@ -21,7 +21,7 @@ export class PlayerSongComponent implements OnInit {
         } else {
           this.changeStatus(false);
         }
-    })
+    });
 
     if (this.song.id === this.shareService.currentSongId && this.shareService.isPlaying) {
       this.changeStatus(true);

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerAlbumPreviewComponent } from './player-album-preview.component';
 
 describe('PlayerAlbumPreviewComponent', () => {

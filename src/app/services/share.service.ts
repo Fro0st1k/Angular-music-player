@@ -1,16 +1,11 @@
 import { Injectable } from '@angular/core';
-import { Subject, BehaviorSubject, Observable } from 'rxjs';
-import { RequestsHubService } from './requests-hub.service';
+import { Subject, Observable } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ShareService {
-  private data: Observable<ISongList> = this.requestsHubService.getSongList();
-  private songListSource = new BehaviorSubject<any>(this.data);
-  public songList = this.songListSource.asObservable();
-
   private changeIdSubject = new Subject<number>();
   public notifyChangeId = this.changeIdSubject.asObservable();
   public currentSongId = 0;
@@ -19,18 +14,18 @@ export class ShareService {
   public notifyPlaySong = this.playSongSubject.asObservable();
   public isPlaying = false;
 
-  constructor(private requestsHubService: RequestsHubService) { }
+  constructor() {}
 
-  public sendNewSongId(id) {
+  public sendNewSongId(id: number): void {
     this.currentSongId = id;
     this.changeIdSubject.next(id);
   }
 
-  public playSong(id: number) {
+  public playSong(id: number): void {
     this.playSongSubject.next(id);
   }
 
-  changeSongStatus(status: boolean) {
+  changeSongStatus(status: boolean): void {
     this.isPlaying = status;
   }
 }

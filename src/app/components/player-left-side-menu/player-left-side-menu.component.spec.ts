@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerLeftSideMenuComponent } from './player-left-side-menu.component';
 
 describe('PlayerLeftSideMenuComponent', () => {

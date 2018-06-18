@@ -7,10 +7,8 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppComponent } from './components/app/app.component';
 import { PlayerBarComponent } from './components/player-bar/player-bar.component';
 import { PlayerLeftSideMenuComponent } from './components/player-left-side-menu/player-left-side-menu.component';
-import { PlayerSongListComponent } from './components/player-song-list/player-song-list.component';
 import { PlayerSongComponent } from './components/player-song/player-song.component';
 import { PlayerContentComponent } from './components/player-content/player-content.component';
-import { PlayerFeaturedComponent } from './components/player-featured/player-featured.component';
 import { PlayerLibraryComponent } from './components/player-library/player-library.component';
 import { PlayerDiscoverComponent } from './components/player-discover/player-discover.component';
 import { PlayerTopMenuComponent } from './components/player-top-menu/player-top-menu.component';
@@ -29,10 +27,8 @@ import { ShareService } from './services/share.service';
     AppComponent,
     PlayerBarComponent,
     PlayerLeftSideMenuComponent,
-    PlayerSongListComponent,
     PlayerSongComponent,
     PlayerContentComponent,
-    PlayerFeaturedComponent,
     PlayerLibraryComponent,
     PlayerDiscoverComponent,
     PlayerTopMenuComponent,
@@ -49,9 +45,10 @@ import { ShareService } from './services/share.service';
     BrowserAnimationsModule
   ],
   providers: [
-    RequestsHubService, 
+    RequestsHubService,
     ShareService
   ],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {}

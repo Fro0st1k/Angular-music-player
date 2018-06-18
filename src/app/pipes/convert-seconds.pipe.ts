@@ -6,7 +6,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 
 export class ConvertSecondsPipe implements PipeTransform {
 
-  transform(duration: number, args?: any): string {
+  transform(duration: number): string {
     let minutes = `${~~(duration / 60)}`;
     let seconds = `${~~(duration % 60)}`;
 

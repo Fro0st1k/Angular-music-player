@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerTopMenuComponent } from './player-top-menu.component';
 
 describe('PlayerTopMenuComponent', () => {

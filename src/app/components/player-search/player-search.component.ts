@@ -1,7 +1,6 @@
-import { Component, OnInit, ElementRef, ViewChild } from '@angular/core';
+import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { tap, map, filter, debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
-import { fromEvent } from 'rxjs';
-
+import { fromEvent, Subscription } from 'rxjs';
 import { RequestsHubService } from '../../services/requests-hub.service';
 
 @Component({
@@ -10,16 +9,17 @@ import { RequestsHubService } from '../../services/requests-hub.service';
   styleUrls: ['./player-search.component.scss']
 })
 
-export class PlayerSearchComponent implements OnInit {
+export class PlayerSearchComponent implements OnInit, OnDestroy {
   private albums = [];
   private searchInput: HTMLInputElement;
+  private searchSubscription: Subscription;
   @ViewChild('searchBox') searchBox: ElementRef;
 
   constructor(private requestsHubService: RequestsHubService) { }
 
   ngOnInit() {
     this.searchInput = this.searchBox.nativeElement;
-    this.startWatchigInput().subscribe(data => this.albums.push(data));
+    this.searchSubscription = this.startWatchigInput().subscribe(data => this.albums.push(data));
   }
 
   startWatchigInput() {
@@ -31,5 +31,9 @@ export class PlayerSearchComponent implements OnInit {
       tap(() => this.albums = []),
       switchMap((text) => this.requestsHubService.getFoundAlbums(text))
     );
+  }
+
+  ngOnDestroy() {
+    this.searchSubscription.unsubscribe();
   }
 }

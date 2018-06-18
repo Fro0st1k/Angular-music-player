@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerSearchComponent } from './player-search.component';
 
 describe('PlayerSearchComponent', () => {

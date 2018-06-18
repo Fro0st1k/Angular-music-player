@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, Input } from '@angular/core';
 
 @Component({
   selector: 'app-player-album-preview',
@@ -6,13 +6,6 @@ import { Component, OnInit, Input } from '@angular/core';
   styleUrls: ['./player-album-preview.component.scss']
 })
 
-export class PlayerAlbumPreviewComponent implements OnInit {
+export class PlayerAlbumPreviewComponent {
   @Input() album;
-
-  constructor() { }
-
-  ngOnInit() {
-
-  }
-
 }

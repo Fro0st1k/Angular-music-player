@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerBarComponent } from './player-bar.component';
 
 describe('PlayerBarComponent', () => {

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerContentComponent } from './player-content.component';
 
 describe('PlayerContentComponent', () => {
