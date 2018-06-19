@@ -1,6 +1,7 @@
 import { Component, OnInit, Output, OnDestroy } from '@angular/core';
 import { ShareService } from './../../services/share.service';
 import { DataService } from './../../services/data.service';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-player-library',
@@ -9,13 +10,13 @@ import { DataService } from './../../services/data.service';
 })
 
 export class PlayerLibraryComponent implements OnInit, OnDestroy {
-  @Output() songList;
-  @Output() currentSong;
+  @Output() songList: ISongList;
+  @Output() currentSong: ISongInfo;
 
   private currentSongId = this.shareService.currentSongId;
-  private subscribes = [];
-  private dataSub;
-  private changeIdSub;
+  private subscribes: Subscription[] = [];
+  private dataSub: Subscription;
+  private changeIdSub: Subscription;
 
   constructor(
     private shareService: ShareService,
@@ -23,6 +24,8 @@ export class PlayerLibraryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
+    this.dataService.getSongList();
+
     this.dataSub = this.dataService.songListObs
       .subscribe(data => {
         if (data) {

@@ -15,12 +15,9 @@ export class DataService {
   private categoriesSource = new BehaviorSubject<any>(this.categoriesList);
   public categoriesObs = this.categoriesSource.asObservable();
 
-  constructor(private requestsHubService: RequestsHubService) {
-    this.requestsHubService.getSongList().subscribe(data => {
-      this.songList = data.songList;
-      this.songListSource.next(data.songList);
-    });
+  constructor(private requestsHubService: RequestsHubService) {}
 
+  getCategoriesListFromServer() {
     this.requestsHubService.getCategories().subscribe(data => {
       this.categoriesList = data.categories;
       this.categoriesSource.next(data.categories);
@@ -28,11 +25,22 @@ export class DataService {
   }
 
   getCategoriesList() {
-    return this.categoriesList;
+    if (!this.categoriesList) {
+      this.getCategoriesListFromServer();
+    }
+  }
+
+  getSongListFromServer() {
+    this.requestsHubService.getSongList().subscribe(data => {
+      this.songList = data.songList;
+      this.songListSource.next(data.songList);
+    });
   }
 
   getSongList() {
-    return this.songList;
+    if (!this.songList) {
+      this.getSongListFromServer();
+    }
   }
 }
 

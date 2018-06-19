@@ -40,44 +40,44 @@
   {
     "name": "Made For You",
     "albums":[{
-      "cover": "assets/img/album-covers/Violator.jpg",
-      "albumName": "Violator",
-      "autor": "Depeche Mode"
+      "cover": "assets/img/album-covers/30stm.jpg",
+      "albumName": "Up in the air",
+      "autor": "30 seconds to mars"
     },
     {
-      "cover": "assets/img/album-covers/SleepWellBeast.jpg",
-      "albumName": "Sleep Well Beast",
-      "autor": "The National"
+      "cover": "assets/img/album-covers/Bullet1.jpg",
+      "albumName": "Over it",
+      "autor": "Bullet for my valentine"
     },
     {
-      "cover": "assets/img/album-covers/OneMoreLight.jpg",
-      "albumName": "One More Light",
+      "cover": "assets/img/album-covers/LinkinPark.jpg",
+      "albumName": "Meteora",
       "autor": "Linkin Park"
     },
     {
-      "cover": "assets/img/album-covers/Battles.jpg",
-      "albumName": "Battles",
-      "autor": "In Flames"
+      "cover": "assets/img/album-covers/Future.jpg",
+      "albumName": "The future",
+      "autor": "ADK"
     },
     {
-      "cover": "assets/img/album-covers/TheLivingInfinite.jpg",
-      "albumName": "The Living Infinite",
-      "autor": "Soilwork"
+      "cover": "assets/img/album-covers/Lumen.jpg",
+      "albumName": "No time to love",
+      "autor": "Lumen"
     },
     {
-      "cover": "assets/img/album-covers/GUNSHIP.jpg",
-      "albumName": "GUNSHIP",
-      "autor": "Gunship"
+      "cover": "assets/img/album-covers/Mansionair.jpg",
+      "albumName": "Violet city",
+      "autor": "Mansionair"
     },
     {
-      "cover": "assets/img/album-covers/PermanentVacation.jpg",
-      "albumName": "Permanent Vacation",
-      "autor": "Aerosmith"
+      "cover": "assets/img/album-covers/Metallica.jpg",
+      "albumName": "Singles",
+      "autor": "Metallica"
     },
     {
-      "cover": "assets/img/album-covers/Violator.jpg",
-      "albumName": "Violator",
-      "autor": "Depeche Mode"
+      "cover": "assets/img/album-covers/Bullet2.jpg",
+      "albumName": "Venom",
+      "autor": "Bullet for my valentine"
     }]
   }]
 }

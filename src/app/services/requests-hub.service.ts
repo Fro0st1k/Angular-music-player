@@ -14,10 +14,12 @@ export class RequestsHubService {
   constructor(private http: HttpClient) { }
 
   getCategories(): Observable<ICategories> {
+    console.log('get Categories');
     return this.http.get<ICategories>(this.categoriesUrl);
   }
 
   getSongList(): Observable<ISongList> {
+    console.log('get SongList');
     return this.http.get<ISongList>(this.getSongListUrl);
   }
 
