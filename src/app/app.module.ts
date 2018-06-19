@@ -16,6 +16,8 @@ import { PlayerContentBoxComponent } from './components/player-content-box/playe
 import { PlayerAlbumPreviewComponent } from './components/player-album-preview/player-album-preview.component';
 import { PlayerSearchComponent } from './components/player-search/player-search.component';
 import { PlayerTracklistSongPreviewComponent } from './components/player-tracklist-song-preview/player-tracklist-song-preview.component';
+import { PlayerVolumeBarComponent } from './components/player-volume-bar/player-volume-bar.component';
+import { PlayerControlsBarComponent } from './components/player-controls-bar/player-controls-bar.component';
 
 import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 
@@ -36,7 +38,9 @@ import { ShareService } from './services/share.service';
     PlayerAlbumPreviewComponent,
     PlayerSearchComponent,
     PlayerTracklistSongPreviewComponent,
-    ConvertSecondsPipe
+    ConvertSecondsPipe,
+    PlayerVolumeBarComponent,
+    PlayerControlsBarComponent
   ],
   imports: [
     BrowserModule,

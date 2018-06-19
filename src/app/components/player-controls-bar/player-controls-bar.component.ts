@@ -1,53 +1,28 @@
-import { switchMap } from 'rxjs/operators';
-import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-
+import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
 import { ShareService } from './../../services/share.service';
-import { DataService } from './../../services/data.service';
 
 @Component({
-  selector: 'app-player-bar',
-  templateUrl: './player-bar.component.html',
-  styleUrls: ['./player-bar.component.scss']
+  selector: 'app-player-controls-bar',
+  templateUrl: './player-controls-bar.component.html',
+  styleUrls: ['./player-controls-bar.component.scss']
 })
 
-export class PlayerBarComponent implements OnInit, OnDestroy {
-
-  private refreshInterval: any;
-  // SongTime
+export class PlayerControlsBarComponent implements OnInit {
+  @Input() audioContainer;
+  @Input() songList;
   @ViewChild('progressBar') progress: ElementRef;
   @ViewChild('progressBarStatus') progressStatus: ElementRef;
   private progressBar: HTMLElement;
   private progressBarStatus: HTMLElement;
-  // Play
-  @ViewChild('audio') audio: ElementRef;
-  private isPlaying = false;
-  private audioContainer: HTMLAudioElement;
-  private nowPlayingSongId: number;
+  private playingSong;
   private currentSongTime = 0;
-  public songList: ISongInfo[];
-  public playingSong: ISongInfo;
+  private isPlaying = false;
+  private nowPlayingSongId: number;
+  private refreshInterval: any;
 
-  constructor(
-    private shareService: ShareService,
-    private dataService: DataService
-  ) {}
+  constructor(private shareService: ShareService) {}
 
-  ngOnInit(): void {
-    // fetch data
-    this.dataService.songListObs
-      .subscribe(data => {
-        if (data) {
-          this.songList = data;
-          this.setSongInfo();
-          this.audioContainer = this.audio.nativeElement;
-        }
-      });
-
-    this.shareService.notifyPlaySong
-      .subscribe(id => {
-        this.playSelectedSong(id);
-      });
-    // songTime
+  ngOnInit() {
     this.progressBar = this.progress.nativeElement;
     this.progressBarStatus = this.progressStatus.nativeElement;
   }
@@ -84,7 +59,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     this.playingSong.duration = this.songList[id].duration;
   }
 
-  playNextSong(): void {
+  playNextSong(): void {  // dry
     this.pauseSong();
     this.changeSongBarStatus(0);
     if (this.nowPlayingSongId < this.songList.length) {
@@ -95,7 +70,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     this.playSong();
   }
 
-  playPreviousSong(): void {
+  playPreviousSong(): void { // dry
     this.pauseSong();
     this.changeSongBarStatus(0);
     if (this.nowPlayingSongId > 0) {
@@ -163,22 +138,5 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     const dislocationPerSecond = 100 / this.getCurrentSongDuration();
     this.changeSongBarStatusPerSecond(dislocationPerSecond);
   }
-
-  ngOnDestroy() {
-
-  }
 }
 
-interface ISongInfo {
-  id;
-  name;
-  artist;
-  albumName;
-  cover;
-  src;
-  duration;
-}
-
-interface ISongList {
-  songList: ISongInfo[];
-}

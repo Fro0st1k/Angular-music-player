@@ -176,66 +176,7 @@
     }
   }
   
-  
-  &__playback-settings {
+  &__volume {
     width: 30%;
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-    margin-right: 16px;
-    
-    &-song-list-button,
-    &-volume-button {
-      position: relative;
-    }
-
-    &-song-list-button:after,
-    &-volume-button:after {
-      content: '';
-      display: block;
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 32px;
-      height: 32px;
-      background-size: contain;
-    }
-
-    &-song-list-button:after {
-      background-image: url('../../../assets/img/icons/library.svg');
-    }
-    
-    &-volume-button:after {
-      background-image: url('../../../assets/img/icons/volume.svg');
-    }
-
-    &-volume-button-off:after {
-      background-image: url('../../../assets/img/icons/volumeoff.svg');
-    }
-
-    &-volume-progress-bar {
-      position: relative;
-      width: 82px;
-      height: 4px;
-      border-radius: 2px;
-      background-color: $progress-bar;
-      margin-left: 2px;
-      cursor: pointer;
-
-      &-state {
-        position: absolute;
-        left: 0;
-        top: 0;
-        height: 4px;
-        border-radius: 2px;
-        max-width: 100%;
-        width: 100%;
-        background-color: #fff;
-      }
-
-      &:hover &-state {
-        background-color: $primary-color-contrast;
-      }
-    }
   }
 }

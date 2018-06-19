@@ -31,12 +31,8 @@
       <div class="music-player__playback-bar-time-left">{{playingSong?.duration | convertSeconds}}</div>
     </div>
   </div>
-  <div class="music-player__playback-settings">
-    <button class="music-player__playback-settings-song-list-button control-button"></button>
-    <button (click)="muteSong()" [ngClass]="{'music-player__playback-settings-volume-button-off' : isMuted}" class="music-player__playback-settings-volume-button control-button"></button>
-    <div #volumeBar (click)="handChangeVolume($event)" class="music-player__playback-settings-volume-progress-bar">
-      <div #volumeStatus class="music-player__playback-settings-volume-progress-bar-state"></div>
-    </div>
+  <div class="music-player__volume">
+    <app-player-volume-bar [audioContainer]="audioContainer"></app-player-volume-bar>
   </div>
 </div>
 

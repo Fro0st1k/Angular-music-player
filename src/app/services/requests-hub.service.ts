@@ -29,7 +29,6 @@ export class RequestsHubService {
   }
 }
 
-
 interface ICategories {
   categories: object[];
 }
