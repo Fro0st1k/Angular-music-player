@@ -1,0 +1,68 @@
+{
+  "categories": [{
+    "name": "Time to throw back",
+    "albums":[{
+      "cover": "assets/img/album-covers/Fallen.jpg",
+      "albumName": "Fallen",
+      "autor": "Elise"
+    },
+    {
+      "cover": "assets/img/album-covers/Helious.jpg",
+      "albumName": "Helious",
+      "autor": "The National"
+    },
+    {
+      "cover": "assets/img/album-covers/Know.jpg",
+      "albumName": "Know",
+      "autor": "Some guy"
+    },
+    {
+      "cover": "assets/img/album-covers/Los.jpg",
+      "albumName": "Los",
+      "autor": "Dirty John"
+    }]
+  },
+  {
+    "name": "Recently played",
+    "albums":[{
+      "cover": "assets/img/album-covers/Valley.jpg",
+      "albumName": "Valley",
+      "autor": "Some guy"
+    },
+    {
+      "cover": "assets/img/album-covers/Star.jpg",
+      "albumName": "Star",
+      "autor": "Some gyu"
+    },
+    {
+      "cover": "assets/img/album-covers/LinkinPark.jpg",
+      "albumName": "Meteora",
+      "autor": "Linkin Park"
+    },
+    {
+      "cover": "assets/img/album-covers/Future.jpg",
+      "albumName": "The future",
+      "autor": "ADK"
+    },
+    {
+      "cover": "assets/img/album-covers/Lumen.jpg",
+      "albumName": "No time to love",
+      "autor": "Lumen"
+    },
+    {
+      "cover": "assets/img/album-covers/Mansionair.jpg",
+      "albumName": "Violet city",
+      "autor": "Mansionair"
+    },
+    {
+      "cover": "assets/img/album-covers/Metallica.jpg",
+      "albumName": "Singles",
+      "autor": "Metallica"
+    },
+    {
+      "cover": "assets/img/album-covers/Bullet2.jpg",
+      "albumName": "Venom",
+      "autor": "Bullet for my valentine"
+    }]
+  }]
+}
