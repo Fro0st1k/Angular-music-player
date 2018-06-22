@@ -1,7 +1,7 @@
 <app-player-left-side-menu></app-player-left-side-menu>
 <div class="content">
   <div class="content-wrapper">
-    <app-player-top-menu></app-player-top-menu>
+    <app-player-top-menu *ngIf="menuIsHidden"></app-player-top-menu>
     <div [@routeAnimation]="prepRouteState(routerOutlet)">
       <router-outlet #routerOutlet="outlet"></router-outlet>
     </div>
