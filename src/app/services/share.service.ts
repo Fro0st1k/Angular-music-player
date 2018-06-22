@@ -12,7 +12,7 @@ export class ShareService {
 
   private playSongSubject = new Subject<number>();
   public notifyPlaySong = this.playSongSubject.asObservable();
-  public isPlaying = false;
+  private isPlaying = false;
 
   constructor() {}
 
@@ -21,12 +21,16 @@ export class ShareService {
     this.changeIdSubject.next(id);
   }
 
-  public playSong(id: number): void {
+  public playCurrentSong(id: number): void {
     this.playSongSubject.next(id);
   }
 
-  changeSongStatus(status: boolean): void {
+  public changeSongStatus(status: boolean): void {
     this.isPlaying = status;
+  }
+
+  public getSongStatus(): boolean {
+    return this.isPlaying;
   }
 }
 

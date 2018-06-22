@@ -18,14 +18,14 @@ export class DataService {
 
   constructor(private requestsHubService: RequestsHubService) {}
 
-  getCategoriesListFromServer(): void {
+  private getCategoriesListFromServer(): void {
     this.requestsHubService.getCategories().subscribe(data => {
       this.categoriesList = data.categories;
       this.categoriesSource.next(data.categories);
     });
   }
 
-  getCategoriesList(): Observable<ICategories> {
+  public getCategoriesList(): Observable<ICategories> {
     if (!this.categoriesList) {
       this.getCategoriesListFromServer();
     }
@@ -33,7 +33,7 @@ export class DataService {
     return this.categoriesObs;
   }
 
-  getSongListFromServer(): void {
+  private getSongListFromServer(): void {
     this.songListIsFetching = true;
     this.requestsHubService.getSongList().subscribe(data => {
       this.songList = data.songList;
@@ -42,7 +42,7 @@ export class DataService {
     });
   }
 
-  getSongList(): Observable<ISongInfo[]> {
+  public getSongList(): Observable<ISongInfo[]> {
     if (!this.songList && !this.songListIsFetching) {
       this.getSongListFromServer();
     }

@@ -10,6 +10,7 @@
   min-width: 600px;
   max-width: 800px;
   @include set-animation(background-color, .2s, linear);
+  @include set-animation(color, .2s, linear);
 
   &-play {
     width: 48px;
@@ -18,6 +19,11 @@
     background-color: gray;
     background: url('../../../assets/img/icons/play2.svg');
     background-size: contain;
+
+    &--playing {
+      background: url('../../../assets/img/icons/pause2.svg');
+      background-size: contain;
+    }
   }
   
   &-info {
@@ -37,11 +43,7 @@
 
   &--playing {
     color: $primary-color-contrast;
-
-    // &:hover .tracklist__song-play {
-    //   background: url('../../../assets/img/icons/pause2.svg');
-    //   background-size: contain;
-    // }
+    background-color: rgba(0, 0, 0, .3);
   }
 
   &:hover {

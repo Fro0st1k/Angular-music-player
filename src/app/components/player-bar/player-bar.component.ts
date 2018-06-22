@@ -20,12 +20,12 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
   private progressBarStatus: HTMLElement;
   // Play
   @ViewChild('audio') audio: ElementRef;
-  private isPlaying = false;
   private audioContainer: HTMLAudioElement;
   private nowPlayingSongId: number;
   private currentSongTime = 0;
   public songList: ISongInfo[];
   public playingSong: ISongInfo;
+  private isPlaying: boolean;
 
   constructor(
     private shareService: ShareService,
@@ -50,16 +50,16 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     // songTime
     this.progressBar = this.progress.nativeElement;
     this.progressBarStatus = this.progressStatus.nativeElement;
+    this.isPlaying = this.shareService.getSongStatus();
   }
 
   playSong(): void {
-    if (this.isPlaying) {
+    if (this.shareService.getSongStatus()) {
       this.pauseSong();
       return;
     }
-
-    this.isPlaying = true;
     this.shareService.changeSongStatus(true);
+    this.isPlaying = this.shareService.getSongStatus();
     this.shareService.sendNewSongId(this.nowPlayingSongId);
 
     setTimeout(() => {
@@ -75,7 +75,9 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
   pauseSong(): void {
     clearInterval(this.refreshInterval);
     this.audioContainer.pause();
-    this.isPlaying = false;
+    this.shareService.changeSongStatus(false);
+    this.shareService.sendNewSongId(this.nowPlayingSongId);
+    this.isPlaying = this.shareService.getSongStatus();
   }
 
   setSongInfo(id: number = 0): void {
@@ -107,7 +109,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
   }
 
   playSelectedSong(selectedSongId: number): void {
-    if (this.isPlaying && selectedSongId === this.shareService.currentSongId) {
+    if (this.shareService.getSongStatus() && selectedSongId === this.shareService.currentSongId) {
       this.pauseSong();
       return;
     }
