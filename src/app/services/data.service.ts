@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable } from 'rxjs';
+import { BehaviorSubject, Observable, Subscription } from 'rxjs';
 import { RequestsHubService } from './requests-hub.service';
 
 @Injectable({
@@ -9,38 +9,42 @@ import { RequestsHubService } from './requests-hub.service';
 export class DataService {
   private songList: ISongInfo[];
   private songListSource = new BehaviorSubject<any>(this.songList);
-  public songListObs = this.songListSource.asObservable();
+  private songListObs = this.songListSource.asObservable();
 
-  private categoriesList;
+  private categoriesList: object[];
   private categoriesSource = new BehaviorSubject<any>(this.categoriesList);
-  public categoriesObs = this.categoriesSource.asObservable();
+  private categoriesObs = this.categoriesSource.asObservable();
 
   constructor(private requestsHubService: RequestsHubService) {}
 
-  getCategoriesListFromServer() {
+  getCategoriesListFromServer(): void {
     this.requestsHubService.getCategories().subscribe(data => {
       this.categoriesList = data.categories;
       this.categoriesSource.next(data.categories);
     });
   }
 
-  getCategoriesList() {
+  getCategoriesList(): Observable<ICategories> {
     if (!this.categoriesList) {
       this.getCategoriesListFromServer();
     }
+
+    return this.categoriesObs;
   }
 
-  getSongListFromServer() {
+  getSongListFromServer(): void {
     this.requestsHubService.getSongList().subscribe(data => {
       this.songList = data.songList;
       this.songListSource.next(data.songList);
     });
   }
 
-  getSongList() {
+  getSongList(): Observable<ISongInfo[]> {
     if (!this.songList) {
       this.getSongListFromServer();
     }
+
+    return this.songListObs;
   }
 }
 
@@ -56,4 +60,8 @@ interface ISongInfo {
   cover;
   src;
   duration;
+}
+
+interface ICategories {
+  categories: object[];
 }

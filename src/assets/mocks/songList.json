@@ -1,30 +1,30 @@
 {
   "songList": [{
     "id": 0,
-    "name": "Battles",
-    "artist": "In Flames",
+    "name": "Rescue me",
+    "artist": "30 Seconds to mars",
     "albumName": "The future",
-    "cover": "../../../assets/img/album-covers/Battles.jpg",
+    "cover": "../../../assets/img/album-covers/30stm.jpg",
     "src": "../../../assets/songs/1.mp3",
-    "duration": 182
+    "duration": 217
   }, 
   {
     "id": 1,
-    "name": "Fight for your life",
-    "artist": "Gunship",
-    "albumName": "The zone",
+    "name": "Save Tonight",
+    "artist": "Eagle Eye Cherry",
+    "albumName": "That a nice guy",
     "cover": "../../../assets/img/album-covers/GUNSHIP.jpg",
     "src": "../../../assets/songs/2.mp3",
-    "duration": 163
+    "duration": 277
   },
   {
     "id": 2,
-    "name": "One more Light",
-    "artist": "Linkin Park",
-    "albumName": "album of faith",
+    "name": "Infinity",
+    "artist": "Guru Josh Project",
+    "albumName": "Album of faith",
     "cover": "../../../assets/img/album-covers/OneMoreLight.jpg",
     "src": "../../../assets/songs/3.mp3",
-    "duration": 202
+    "duration": 191
   },
   {
     "id": 3,

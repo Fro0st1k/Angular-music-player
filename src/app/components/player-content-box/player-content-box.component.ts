@@ -16,8 +16,7 @@ export class PlayerContentBoxComponent implements OnInit, OnDestroy {
   constructor(private dataService: DataService) {}
 
   ngOnInit() {
-    this.dataService.getCategoriesList();
-    this.dataSub = this.dataService.categoriesObs.subscribe(data => this.categories = data);
+    this.dataSub = this.dataService.getCategoriesList().subscribe(data => this.categories = data);
   }
 
   ngOnDestroy() {

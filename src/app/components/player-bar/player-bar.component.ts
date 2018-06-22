@@ -34,8 +34,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     // fetch data
-    this.dataService.getSongList();
-    this.dataService.songListObs
+    this.dataService.getSongList()
       .subscribe(data => {
         if (data) {
           this.songList = data;

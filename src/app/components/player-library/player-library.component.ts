@@ -10,7 +10,7 @@ import { Subscription } from 'rxjs';
 })
 
 export class PlayerLibraryComponent implements OnInit, OnDestroy {
-  @Output() songList: ISongList;
+  @Output() songList: ISongInfo[];
   @Output() currentSong: ISongInfo;
 
   private currentSongId = this.shareService.currentSongId;
@@ -24,9 +24,7 @@ export class PlayerLibraryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.dataService.getSongList();
-
-    this.dataSub = this.dataService.songListObs
+    this.dataSub = this.dataService.getSongList()
       .subscribe(data => {
         if (data) {
           this.songList = data;
