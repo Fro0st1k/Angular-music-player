@@ -13,7 +13,7 @@
     "name": "Save Tonight",
     "artist": "Eagle Eye Cherry",
     "albumName": "That a nice guy",
-    "cover": "../../../assets/img/album-covers/GUNSHIP.jpg",
+    "cover": "../../../assets/img/album-covers/Mansionair.jpg",
     "src": "../../../assets/songs/2.mp3",
     "duration": 277
   },
@@ -22,7 +22,7 @@
     "name": "Infinity",
     "artist": "Guru Josh Project",
     "albumName": "Album of faith",
-    "cover": "../../../assets/img/album-covers/OneMoreLight.jpg",
+    "cover": "../../../assets/img/album-covers/Helious.jpg",
     "src": "../../../assets/songs/3.mp3",
     "duration": 191
   },

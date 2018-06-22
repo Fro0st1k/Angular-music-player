@@ -10,6 +10,7 @@ export class DataService {
   private songList: ISongInfo[];
   private songListSource = new BehaviorSubject<any>(this.songList);
   private songListObs = this.songListSource.asObservable();
+  private songListIsFetching = false;
 
   private categoriesList: object[];
   private categoriesSource = new BehaviorSubject<any>(this.categoriesList);
@@ -33,14 +34,16 @@ export class DataService {
   }
 
   getSongListFromServer(): void {
+    this.songListIsFetching = true;
     this.requestsHubService.getSongList().subscribe(data => {
       this.songList = data.songList;
       this.songListSource.next(data.songList);
+      this.songListIsFetching = false;
     });
   }
 
   getSongList(): Observable<ISongInfo[]> {
-    if (!this.songList) {
+    if (!this.songList && !this.songListIsFetching) {
       this.getSongListFromServer();
     }
 
