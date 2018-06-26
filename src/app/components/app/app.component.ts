@@ -11,6 +11,7 @@ import { ActivatedRoute, Router, Event, NavigationStart } from '@angular/router'
 
 export class AppComponent {
   private menuIsHidden: boolean;
+  private isLibrary: boolean;
 
   constructor(
     private activatedRoute: ActivatedRoute,
@@ -20,6 +21,7 @@ export class AppComponent {
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         event.url === '/search' ? this.menuIsHidden = false : this.menuIsHidden = true;
+        event.url === '/library' ? this.isLibrary = true : this.isLibrary = false;
       }
     });
   }
