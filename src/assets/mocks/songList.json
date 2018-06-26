@@ -34,5 +34,77 @@
     "cover": "../../../assets/img/album-covers/LinkinPark.jpg",
     "src": "../../../assets/songs/4.mp3",
     "duration": 202
+  },
+  {
+    "id": 4,
+    "name": "In the end",
+    "artist": "Linkin Park",
+    "albumName": "Meteora",
+    "cover": "../../../assets/img/album-covers/LinkinPark.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 241
+  },
+  {
+    "id": 5,
+    "name": "Sun",
+    "artist": "30 Seconds to mars",
+    "albumName": "Up in the air",
+    "cover": "../../../assets/img/album-covers/30stm.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 237
+  },
+  {
+    "id": 6,
+    "name": "What a nice guy",
+    "artist": "Dirty Jhon",
+    "albumName": "LA",
+    "cover": "../../../assets/img/album-covers/Los.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 242
+  },
+  {
+    "id": 7,
+    "name": "Benzin",
+    "artist": "Rammstein",
+    "albumName": "Rosenrot",
+    "cover": "../../../assets/img/album-covers/Rammstein.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 226
+  },
+  {
+    "id": 8,
+    "name": "Гореть",
+    "artist": "Lumen",
+    "albumName": "No time to love",
+    "cover": "../../../assets/img/album-covers/Lumen.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 287
+  },
+  {
+    "id": 9,
+    "name": "Overload",
+    "artist": "Soilwork",
+    "albumName": "Figure number five",
+    "cover": "../../../assets/img/album-covers/Soilwork.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 224
+  },
+  {
+    "id": 10,
+    "name": "The Unforgiven",
+    "artist": "Metallica",
+    "albumName": "The Black Album",
+    "cover": "../../../assets/img/album-covers/Metallica.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 386
+  },
+  {
+    "id": 11,
+    "name": "Make some noise",
+    "artist": "Noize MC",
+    "albumName": "Kystik",
+    "cover": "../../../assets/img/album-covers/Noize.jpg",
+    "src": "../../../assets/songs/4.mp3",
+    "duration": 230
   }]
 }

@@ -18,19 +18,22 @@
   &__album-grid {
     padding: 0 28px;
     display: grid;
-    grid-template-columns: repeat(6, auto);
+    grid-template-columns: repeat(7, auto);
 
-    @include r(1340) {
+    @include r(1600) {
+      grid-template-columns: repeat(6, auto);
+    }
+
+    @include r(1500) {
       grid-template-columns: repeat(5, auto);
     }
 
-    @include r(1180) {
+    @include r(1250) {
       grid-template-columns: repeat(4, auto);
     }
 
-    @include r(1010) {
+    @include r(1050) {
       grid-template-columns: repeat(3, auto);
     }
-
   }
 }
