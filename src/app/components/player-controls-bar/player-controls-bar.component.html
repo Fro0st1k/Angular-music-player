@@ -6,7 +6,7 @@
   <button class="music-player__controls-button music-player__controls-button--repeat control-button"></button>
 </div>
 <div class="music-player__playback-bar">
-  <div class="music-player__playback-bar-curent-time">{{currentSongTime | convertSeconds}}</div>
+  <div class="music-player__playback-bar-current-time">{{currentSongTime | convertSeconds}}</div>
   <div (click)="handChangeCurrentSongTime($event)" #progressBar class="music-player__playback-bar-progress-bar">
     <div #progressBarStatus class="music-player__playback-bar-progress-bar-state"></div>
   </div>
