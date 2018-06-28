@@ -8,13 +8,8 @@ import { PlayerDiscoverComponent } from '../components/player-discover/player-di
 
 const routes: Routes = [
   { path: '', redirectTo: 'home', pathMatch: 'full' },
-<<<<<<< HEAD:src/app/route/routing.module.ts
   { path: 'home', component: PlayerContentComponent, pathMatch: 'full', data: { animation: 'home' }},
   { path: 'search', component: PlayerSearchComponent, pathMatch: 'full', data: { animation: 'search' }},
-=======
-  { path: 'home', component: PlayerContentComponent, pathMatch: 'full', data: { animation: 'home' }} ,
-  { path: 'search', component: PlayerSearchComponent, pathMatch: 'full', data: { animation: 'search'}},
->>>>>>> 94db57e0ac0c3c2f71b004aa39f677aa97456a6f:src/app/routing/routing.module.ts
   { path: 'library', component: PlayerLibraryComponent, pathMatch: 'full', data: { animation: 'library' }},
   { path: 'discover', component: PlayerDiscoverComponent, pathMatch: 'full', data: { animation: 'discover' }},
   { path: '**', redirectTo: 'home' , pathMatch: 'full' }
