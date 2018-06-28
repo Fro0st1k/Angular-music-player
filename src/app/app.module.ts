@@ -4,7 +4,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutingModule } from './routing/routing.module';
 
-import { AppComponent } from './components/app/app.component';
+import { AppComponent } from './components/player/app.component';
 import { PlayerBarComponent } from './components/player-bar/player-bar.component';
 import { PlayerLeftSideMenuComponent } from './components/player-left-side-menu/player-left-side-menu.component';
 import { PlayerSongComponent } from './components/player-song/player-song.component';
@@ -23,6 +23,7 @@ import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 
 import { RequestsHubService } from './services/requests-hub.service';
 import { ShareService } from './services/share.service';
+import { BgChangerDirective } from './directives/bg-changer.directive';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { ShareService } from './services/share.service';
     PlayerTracklistSongPreviewComponent,
     ConvertSecondsPipe,
     PlayerVolumeBarComponent,
-    PlayerControlsBarComponent
+    PlayerControlsBarComponent,
+    BgChangerDirective
   ],
   imports: [
     BrowserModule,
