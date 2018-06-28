@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subscription } from 'rxjs';
+import { BehaviorSubject, Observable } from 'rxjs';
 import { RequestsHubService } from './requests-hub.service';
 
 @Injectable({
@@ -49,10 +49,6 @@ export class DataService {
 
     return this.songListObs;
   }
-}
-
-interface ISongList {
-  songList: ISongInfo[];
 }
 
 interface ISongInfo {

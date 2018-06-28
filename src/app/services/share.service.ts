@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject, Observable } from 'rxjs';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -32,18 +32,4 @@ export class ShareService {
   public getSongStatus(): boolean {
     return this.isPlaying;
   }
-}
-
-interface ISongList {
-  songList: ISongInfo[];
-}
-
-interface ISongInfo {
-  id;
-  name;
-  artist;
-  albumName;
-  cover;
-  src;
-  duration;
 }
