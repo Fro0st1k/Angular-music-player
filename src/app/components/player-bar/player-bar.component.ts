@@ -1,6 +1,6 @@
-import { switchMap } from 'rxjs/operators';
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 
+import { ManualChangeProgressBarService } from './../../services/manual-change-progress-bar.service';
 import { ShareService } from './../../services/share.service';
 import { DataService } from './../../services/data.service';
 
@@ -29,7 +29,8 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
 
   constructor(
     private shareService: ShareService,
-    private dataService: DataService
+    private dataService: DataService,
+    private manualChangeProgressBar: ManualChangeProgressBarService
   ) {}
 
   ngOnInit(): void {
@@ -88,7 +89,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
 
   playNextSong(): void {
     this.pauseSong();
-    this.changeSongBarStatus(0);
+    this.manualChangeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
     if (this.nowPlayingSongId < this.songList.length) {
       this.setSongInfo(++this.nowPlayingSongId);
     } else {
@@ -99,7 +100,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
 
   playPreviousSong(): void {
     this.pauseSong();
-    this.changeSongBarStatus(0);
+    this.manualChangeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
     if (this.nowPlayingSongId > 0) {
       this.setSongInfo(--this.nowPlayingSongId);
     } else {
@@ -115,7 +116,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     }
 
     if (selectedSongId !== this.shareService.currentSongId) {
-      this.changeSongBarStatus(0);
+      this.manualChangeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
     }
 
     this.pauseSong();
@@ -140,16 +141,9 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     this.currentSongTime = this.getCurrentSongTime();
   }
 
-  changeSongBarStatus(persentage: number): void {
-    this.progressBarStatus.style.width = `${persentage}%`;
-  }
-
   handChangeCurrentSongTime(event: MouseEvent): void {
-    const progressBarProperty = this.progressBar.getBoundingClientRect();
-    const mousePosition = event.pageX - progressBarProperty.left + pageXOffset;
-    const currentSongTimePersentage = mousePosition * 100 / progressBarProperty.width;
-    this.changeSongBarStatus(currentSongTimePersentage);
-    this.setCurrentSongTime(this.getCurrentSongDuration() * currentSongTimePersentage / 100);
+    const shift = this.manualChangeProgressBar.changeProgressBarStatus(this.progressBar, this.progressBarStatus, event);
+    this.setCurrentSongTime(this.getCurrentSongDuration() * shift / 100);
   }
 
   changeSongBarStatusPerSecond(persentage: number): void {

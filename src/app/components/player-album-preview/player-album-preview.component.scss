@@ -25,4 +25,14 @@
     font-size: 14px;
     line-height: 20px;
   }
+
+  &__autor {
+    font-size: 12px;
+    text-align: center;
+    color: $font-song-unactive-color;
+
+    &:hover {
+      text-decoration: underline;
+    }
+  }
 }

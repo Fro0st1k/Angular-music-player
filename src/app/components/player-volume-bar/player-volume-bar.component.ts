@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
+import { ManualChangeProgressBarService } from '../../services/manual-change-progress-bar.service'
 
 @Component({
   selector: 'app-player-volume-bar',
@@ -15,7 +16,7 @@ export class PlayerVolumeBarComponent implements OnInit {
   private isMuted = false;
   private currentVolume = 1;
 
-  constructor() { }
+  constructor( private manualChangeProgressBar: ManualChangeProgressBarService) { }
 
   ngOnInit() {
     this.volumeBar = this.volume.nativeElement;
@@ -33,25 +34,18 @@ export class PlayerVolumeBarComponent implements OnInit {
   muteSong(): void {
     if (this.audioContainer.volume) {
       this.setVolume(0);
-      this.changeVolumeBarStatus(0);
+      this.manualChangeProgressBar.moveProgressBarStatus(this.volumeStatusBar, 0);
       this.isMuted = true;
     } else {
       this.setVolume(this.currentVolume);
-      this.changeVolumeBarStatus(this.currentVolume * 100);
+      this.manualChangeProgressBar.moveProgressBarStatus(this.volumeStatusBar, this.currentVolume * 100);
       this.isMuted = false;
     }
   }
 
-  changeVolumeBarStatus(persentage: number): void {
-    this.volumeStatusBar.style.width = `${persentage}%`;
-  }
-
   handChangeVolume(event: MouseEvent): void {
-    const volumeBarProperty = this.volumeBar.getBoundingClientRect();
-    const mousePosition = event.pageX - volumeBarProperty.left + pageXOffset;
-    const volumePersentage = mousePosition * 100 / volumeBarProperty.width;
-    this.changeVolumeBarStatus(volumePersentage);
-    this.setCurrentVolume(volumePersentage / 100);
+    const shift = this.manualChangeProgressBar.changeProgressBarStatus(this.volumeBar, this.volumeStatusBar, event);
+    this.setCurrentVolume(shift / 100);
     this.setVolume(this.currentVolume);
   }
 }

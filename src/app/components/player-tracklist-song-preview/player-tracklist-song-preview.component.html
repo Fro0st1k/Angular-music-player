@@ -1,7 +1,10 @@
 <div class="tracklist__song-preview">
   <img class="tracklist__song-preview-cover" src="{{currentSong?.cover}}" alt="">
   <div class="tracklist__song-preview-title">
-    {{currentSong?.albumName}}
+    {{ currentSong?.name }}
+  </div>
+  <div class="tracklist__song-preview-name">
+    {{ currentSong?.artist }}, {{ currentSong?.albumName }}
   </div>
   <button class="tracklist__song-preview-play">Play</button>
 </div>
