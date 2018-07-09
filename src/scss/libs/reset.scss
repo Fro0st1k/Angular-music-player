@@ -2,12 +2,11 @@ html {
   line-height: 1.15;
   -webkit-text-size-adjust: 100%;
   overflow-x: hidden;
+  overflow-y: scroll;
 }
 
 body {
   margin: 0;
-  overflow-y: scroll;
-  overflow-x: hidden;
 }
 
 h1 {
