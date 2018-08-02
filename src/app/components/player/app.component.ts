@@ -12,7 +12,7 @@ import { ActivatedRoute, Router, Event, NavigationStart } from '@angular/router'
 export class AppComponent {
   private menuIsHidden: boolean;
   private isLibrary: boolean;
-  @Output() color = '#52BFD7';
+  public color = '#52BFD7';
 
   constructor(
     private activatedRoute: ActivatedRoute,

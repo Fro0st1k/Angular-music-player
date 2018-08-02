@@ -12,7 +12,7 @@ export class BgChangerDirective {
     render.setStyle(element.nativeElement, 'background', this.setGradient());
   }
 
-  setGradient():string {
+  setGradient(): string {
     return `linear-gradient(${this.color}, ${this.secondColor})`;
   }
 }
