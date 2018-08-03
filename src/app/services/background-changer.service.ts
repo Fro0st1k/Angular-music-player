@@ -7,14 +7,13 @@ import { Subject } from 'rxjs';
 
 export class BackgroundChangerService {
   private color: string;
-  private secondColor = '#181818';
 
   private imageSubject = new Subject<HTMLImageElement>();
   public notifyImageChange = this.imageSubject.asObservable();
 
   constructor() { }
 
-  setNewImage(imgEl): void {
+  setNewImage(imgEl: HTMLImageElement): void {
     this.imageSubject.next(imgEl);
   }
 

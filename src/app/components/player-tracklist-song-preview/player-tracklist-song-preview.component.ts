@@ -13,8 +13,7 @@ export class PlayerTracklistSongPreviewComponent implements OnChanges {
   constructor(private backgroundChangerService: BackgroundChangerService) {}
 
   ngOnChanges() {
-    setTimeout(() => {
-      this.backgroundChangerService.setNewImage(document.querySelector('.img'));
-    }, 200);
+    const image: HTMLImageElement = document.querySelector('.img');
+    image.onload = () => this.backgroundChangerService.setNewImage(image);
   }
 }
