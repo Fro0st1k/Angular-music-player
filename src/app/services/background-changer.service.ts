@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Subject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -8,17 +9,23 @@ export class BackgroundChangerService {
   private color: string;
   private secondColor = '#181818';
 
+  private colorSubject = new Subject<HTMLImageElement>();
+  public notifyColorChange = this.colorSubject.asObservable();
+
   constructor() { }
 
-  renderBackground(imgEl: HTMLImageElement, backgroundEl: HTMLElement): void {
-    // setTimeout(() => {
-    //   this.color = this.calculateColor(imgEl);
-    //   backgroundEl.style.background = `${this.setGradient()}`;
-    // }, 500);
+  setNewImage(imgEl): void {
+    this.colorSubject.next(imgEl);
   }
 
-  setGradient(): string {
-    return `linear-gradient(${this.color}, ${this.secondColor})`;
+  renderBackground(imgEl: HTMLImageElement): void {
+    this.color = this.calculateColor(imgEl);
+    const bgEl: HTMLElement = document.querySelector('.content-bg');
+    bgEl.style.background = `${this.setColor()}`;
+  }
+
+  setColor(): string {
+    return `${this.color}`;
   }
 
   calculateColor(imgEl: HTMLImageElement): string {

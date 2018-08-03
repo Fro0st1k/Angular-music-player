@@ -1,4 +1,4 @@
-import { Component, Input, OnChanges, OnInit } from '@angular/core';
+import { Component, Input, OnChanges } from '@angular/core';
 import { BackgroundChangerService } from '../../services/background-changer.service';
 
 @Component({
@@ -7,18 +7,14 @@ import { BackgroundChangerService } from '../../services/background-changer.serv
   styleUrls: ['./player-tracklist-song-preview.component.scss']
 })
 
-export class PlayerTracklistSongPreviewComponent implements OnChanges, OnInit {
+export class PlayerTracklistSongPreviewComponent implements OnChanges {
   @Input() currentSong;
-  private backgroundEl: HTMLElement = document.querySelector('.content-bg');
 
   constructor(private backgroundChangerService: BackgroundChangerService) {}
 
-  ngOnInit() {
-    this.backgroundChangerService.renderBackground(document.querySelector('.img'), this.backgroundEl);
-  }
-
   ngOnChanges() {
-    this.backgroundChangerService.renderBackground(document.querySelector('.img'), this.backgroundEl);
+    setTimeout(() => {
+      this.backgroundChangerService.setNewImage(document.querySelector('.img'));
+    }, 200);
   }
-
 }
