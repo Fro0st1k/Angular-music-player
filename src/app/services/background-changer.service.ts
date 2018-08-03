@@ -9,13 +9,13 @@ export class BackgroundChangerService {
   private color: string;
   private secondColor = '#181818';
 
-  private colorSubject = new Subject<HTMLImageElement>();
-  public notifyColorChange = this.colorSubject.asObservable();
+  private imageSubject = new Subject<HTMLImageElement>();
+  public notifyImageChange = this.imageSubject.asObservable();
 
   constructor() { }
 
   setNewImage(imgEl): void {
-    this.colorSubject.next(imgEl);
+    this.imageSubject.next(imgEl);
   }
 
   renderBackground(imgEl: HTMLImageElement): void {
@@ -58,7 +58,6 @@ export class BackgroundChangerService {
     try {
       data = context.getImageData(0, 0, width, height);
     } catch (e) {
-      /* security error, img on diff domain */
       return defaultRGB;
     }
 
@@ -71,7 +70,6 @@ export class BackgroundChangerService {
       rgb.b += data.data[i + 2];
     }
 
-    // ~~ used to floor values
     rgb.r = ~~(rgb.r / count);
     rgb.g = ~~(rgb.g / count);
     rgb.b = ~~(rgb.b / count);

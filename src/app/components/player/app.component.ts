@@ -28,7 +28,7 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.backgroundChangerService.notifyColorChange.subscribe( img => {
+    this.backgroundChangerService.notifyImageChange.subscribe( img => {
       this.backgroundChangerService.renderBackground(img);
     });
   }
