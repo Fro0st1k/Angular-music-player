@@ -13,6 +13,7 @@ import { BackgroundChangerService } from '../../services/background-changer.serv
 export class AppComponent implements OnInit {
   private menuIsHidden: boolean;
   private isLibrary: boolean;
+  private backgroundElement: HTMLElement;
 
   constructor(
     private router: Router,
@@ -28,8 +29,9 @@ export class AppComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.backgroundChangerService.notifyImageChange.subscribe( img => {
-      this.backgroundChangerService.renderBackground(img);
+    this.backgroundChangerService.notifyImageChange.subscribe( imgEl => {
+      this.backgroundElement = document.querySelector('.content-bg');
+      this.backgroundChangerService.renderBackground(imgEl, this.backgroundElement);
     });
   }
 

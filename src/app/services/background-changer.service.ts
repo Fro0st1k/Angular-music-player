@@ -6,28 +6,21 @@ import { Subject } from 'rxjs';
 })
 
 export class BackgroundChangerService {
-  private color: string;
-
   private imageSubject = new Subject<HTMLImageElement>();
   public notifyImageChange = this.imageSubject.asObservable();
 
-  constructor() { }
+  constructor() {}
 
   setNewImage(imgEl: HTMLImageElement): void {
     this.imageSubject.next(imgEl);
   }
 
-  renderBackground(imgEl: HTMLImageElement): void {
-    this.color = this.calculateColor(imgEl);
-    const bgEl: HTMLElement = document.querySelector('.content-bg');
-    bgEl.style.background = `${this.setColor()}`;
+  renderBackground(imgEl: HTMLImageElement, bgEl: HTMLElement): void {
+    const backgroundColor = this.calculateBackgroundColor(imgEl);
+    bgEl.style.background = `${backgroundColor}`;
   }
 
-  setColor(): string {
-    return `${this.color}`;
-  }
-
-  calculateColor(imgEl: HTMLImageElement): string {
+  calculateBackgroundColor(imgEl: HTMLImageElement): string {
     const rgb = this.getAverageRGB(imgEl);
     return this.rgbToHEX(rgb);
   }
@@ -77,10 +70,10 @@ export class BackgroundChangerService {
   }
 
   rgbToHEX(rgb: Irgb): string {
-    return '#' + this.componentToHex(rgb.r) + this.componentToHex(rgb.g) + this.componentToHex(rgb.b);
+    return '#' + this.colorToHex(rgb.r) + this.colorToHex(rgb.g) + this.colorToHex(rgb.b);
   }
 
-  componentToHex(color: number): string {
+  colorToHex(color: number): string {
     const hex = color.toString(16);
     return hex.length === 1 ? '0' + hex : hex;
   }
