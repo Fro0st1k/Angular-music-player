@@ -4,7 +4,7 @@ import { Injectable } from '@angular/core';
   providedIn: 'root'
 })
 
-export class ManualChangeProgressBarService {
+export class ChangeProgressBarService {
 
   constructor() { }
 
@@ -18,5 +18,10 @@ export class ManualChangeProgressBarService {
     const shiftPersentage = mousePosition * 100 / barProperty.width;
     this.moveProgressBarStatus(statusBar, shiftPersentage);
     return shiftPersentage;
+  }
+
+  changeProgressBarStatusPerSecond(statusBar: HTMLElement, persentage: number): void {
+    const progressBarStatusWidth = parseFloat(statusBar.style.width) || 0;
+    statusBar.style.width = `${progressBarStatusWidth + persentage}%`;
   }
 }

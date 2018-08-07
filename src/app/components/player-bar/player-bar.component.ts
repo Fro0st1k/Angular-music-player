@@ -1,8 +1,8 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 
-import { ManualChangeProgressBarService } from './../../services/manual-change-progress-bar.service';
-import { ShareService } from './../../services/share.service';
-import { DataService } from './../../services/data.service';
+import { ChangeProgressBarService } from '../../services/change-progress-bar.service';
+import { ShareService } from '../../services/share.service';
+import { DataService } from '../../services/data.service';
 
 @Component({
   selector: 'app-player-bar',
@@ -30,7 +30,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
   constructor(
     private shareService: ShareService,
     private dataService: DataService,
-    private manualChangeProgressBar: ManualChangeProgressBarService
+    private changeProgressBar: ChangeProgressBarService
   ) {}
 
   ngOnInit(): void {
@@ -68,7 +68,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     });
 
     this.refreshInterval = setInterval(() => {
-      this.autoChangeSongBarStatus();
+      this.changeSongBarStatusPerSecond();
       this.refreshCurrentSongTime();
     }, 1000);
   }
@@ -87,36 +87,29 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     this.playingSong.duration = this.songList[id].duration;
   }
 
-  playNextSong(): void {
+  playNextOrPreviousSong(isNext: boolean): void {
     this.pauseSong();
-    this.manualChangeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
-    if (this.nowPlayingSongId < this.songList.length) {
-      this.setSongInfo(++this.nowPlayingSongId);
-    } else {
-      this.setSongInfo();
-    }
-    this.playSong();
-  }
+    this.changeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
 
-  playPreviousSong(): void {
-    this.pauseSong();
-    this.manualChangeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
-    if (this.nowPlayingSongId > 0) {
-      this.setSongInfo(--this.nowPlayingSongId);
+    if (isNext) {
+      this.nowPlayingSongId = ++this.nowPlayingSongId;
+      this.setSongInfo(this.nowPlayingSongId);
     } else {
-      this.setSongInfo();
+      this.nowPlayingSongId = --this.nowPlayingSongId;
+      this.setSongInfo(this.nowPlayingSongId);
     }
+
     this.playSong();
   }
 
   playSelectedSong(selectedSongId: number): void {
-    if (this.shareService.getSongStatus() && selectedSongId === this.shareService.currentSongId) {
+    if (this.shareService.getSongStatus() && selectedSongId === this.shareService.getCurrentSongId()) {
       this.pauseSong();
       return;
     }
 
-    if (selectedSongId !== this.shareService.currentSongId) {
-      this.manualChangeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
+    if (selectedSongId !== this.shareService.getCurrentSongId()) {
+      this.changeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
     }
 
     this.pauseSong();
@@ -142,22 +135,17 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
   }
 
   handChangeCurrentSongTime(event: MouseEvent): void {
-    const shift = this.manualChangeProgressBar.changeProgressBarStatus(this.progressBar, this.progressBarStatus, event);
+    const shift = this.changeProgressBar.changeProgressBarStatus(this.progressBar, this.progressBarStatus, event);
     this.setCurrentSongTime(this.getCurrentSongDuration() * shift / 100);
   }
 
-  changeSongBarStatusPerSecond(persentage: number): void {
-    const progressBarStatusWidth = parseFloat(this.progressBarStatus.style.width) || 0;
+  changeSongBarStatusPerSecond(): void {
     if (this.audioContainer.ended) {
-      this.playNextSong();
+      this.playNextOrPreviousSong(true);
       return;
     }
-    this.progressBarStatus.style.width = `${progressBarStatusWidth + persentage}%`;
-  }
-
-  autoChangeSongBarStatus(): void {
     const dislocationPerSecond = 100 / this.getCurrentSongDuration();
-    this.changeSongBarStatusPerSecond(dislocationPerSecond);
+    this.changeProgressBar.changeProgressBarStatusPerSecond(this.progressBarStatus, dislocationPerSecond);
   }
 
   ngOnDestroy() {

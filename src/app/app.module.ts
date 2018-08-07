@@ -17,7 +17,6 @@ import { PlayerAlbumPreviewComponent } from './components/player-album-preview/p
 import { PlayerSearchComponent } from './components/player-search/player-search.component';
 import { PlayerTracklistSongPreviewComponent } from './components/player-tracklist-song-preview/player-tracklist-song-preview.component';
 import { PlayerVolumeBarComponent } from './components/player-volume-bar/player-volume-bar.component';
-import { PlayerControlsBarComponent } from './components/player-controls-bar/player-controls-bar.component';
 
 import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 
@@ -41,7 +40,6 @@ import { BgChangerDirective } from './directives/bg-changer.directive';
     PlayerTracklistSongPreviewComponent,
     ConvertSecondsPipe,
     PlayerVolumeBarComponent,
-    PlayerControlsBarComponent,
     BgChangerDirective
   ],
   imports: [

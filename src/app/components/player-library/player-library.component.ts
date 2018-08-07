@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, OnDestroy } from '@angular/core';
-import { ShareService } from './../../services/share.service';
-import { DataService } from './../../services/data.service';
+import { ShareService } from '../../services/share.service';
+import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 
 @Component({
@@ -13,7 +13,7 @@ export class PlayerLibraryComponent implements OnInit, OnDestroy {
   @Output() songList: ISongInfo[];
   @Output() currentSong: ISongInfo;
 
-  private currentSongId = this.shareService.currentSongId;
+  private currentSongId = this.shareService.getCurrentSongId();
   private subscribes: Subscription[] = [];
   private dataSub: Subscription;
   private changeIdSub: Subscription;

@@ -23,7 +23,7 @@ export class PlayerSongComponent implements OnInit {
         }
       });
 
-    if (this.song.id === this.shareService.currentSongId && this.shareService.getSongStatus()) {
+    if (this.song.id === this.shareService.getCurrentSongId() && this.shareService.getSongStatus()) {
       this.setSongStatus(true);
     }
   }

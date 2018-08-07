@@ -8,7 +8,7 @@ import { Subject } from 'rxjs';
 export class ShareService {
   private changeIdSubject = new Subject<number>();
   public notifyChangeId = this.changeIdSubject.asObservable();
-  public currentSongId = 0;
+  private currentSongId = 0;
 
   private playSongSubject = new Subject<number>();
   public notifyPlaySong = this.playSongSubject.asObservable();
@@ -19,6 +19,10 @@ export class ShareService {
   public sendNewSongId(id: number): void {
     this.currentSongId = id;
     this.changeIdSubject.next(id);
+  }
+
+  public getCurrentSongId(): number {
+    return this.currentSongId;
   }
 
   public playCurrentSong(id: number): void {
