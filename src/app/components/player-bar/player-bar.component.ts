@@ -27,6 +27,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
   public playingSong: ISongInfo;
   private isPlaying: boolean;
   private isShufflePlay: boolean;
+  private isRepeatPlay: boolean;
 
   constructor(
     private shareService: ShareService,
@@ -92,6 +93,13 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     this.pauseSong();
     this.changeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
 
+    if (this.isRepeatPlay) {
+      this.pauseSong();
+      this.setCurrentSongTime(0);
+      this.playSong();
+      return;
+    }
+
     if (this.isShufflePlay) {
       const randomNumber = this.getRandomNumber(this.songList.length - 1, 0);
       this.nowPlayingSongId = this.songList[randomNumber].id;
@@ -109,6 +117,10 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     }
 
     this.playSong();
+  }
+
+  toggleRepeatSong() {
+    this.isRepeatPlay = !this.isRepeatPlay;
   }
 
   toggleShufflePlay(): void {

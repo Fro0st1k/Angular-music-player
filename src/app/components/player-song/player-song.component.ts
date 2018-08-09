@@ -12,7 +12,7 @@ export class PlayerSongComponent implements OnInit {
   @Input() song;
 
   constructor(private shareService: ShareService) { }
-
+  // to do: change logic
   ngOnInit() {
     this.shareService.notifyChangeId
       .subscribe(id => {

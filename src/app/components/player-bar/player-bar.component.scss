@@ -90,7 +90,6 @@
     width: 224px;
     height: 32px;
     margin-bottom: 12px;
-
   }
 
   &__controls-button {
@@ -110,9 +109,13 @@
       height: 32px;
       background-size: contain;
     }
-
+    
     &--shuffle:after {
       background-image: url('../../../assets/img/icons/random.svg');
+    }
+
+    &--shuffle-active:after {
+      background-image: url('../../../assets/img/icons/random-active.svg');
     }
 
     &--previous:after {
@@ -133,6 +136,10 @@
 
     &--repeat:after {
       background-image: url('../../../assets/img/icons/repeat.svg');
+    }
+
+    &--repeat-active:after {
+      background-image: url('../../../assets/img/icons/repeat-active.svg');
     }
   }
 
