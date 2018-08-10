@@ -16,14 +16,14 @@ import { PlayerContentBoxComponent } from './components/player-content-box/playe
 import { PlayerAlbumPreviewComponent } from './components/player-album-preview/player-album-preview.component';
 import { PlayerSearchComponent } from './components/player-search/player-search.component';
 import { PlayerTracklistSongPreviewComponent } from './components/player-tracklist-song-preview/player-tracklist-song-preview.component';
-import { PlayerVolumeBarComponent } from './components/player-volume-bar/player-volume-bar.component';
+import { PlayerVolumeBarComponent } from './components/player-bar/player-volume-bar/player-volume-bar.component';
 
 import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 
 import { RequestsHubService } from './services/requests-hub.service';
 import { ShareService } from './services/share.service';
 import { BgChangerDirective } from './directives/bg-changer.directive';
-import { PlayerBarSongInfoComponent } from './components/player-bar-song-info/player-bar-song-info.component';
+import { PlayerBarSongInfoComponent } from './components/player-bar/player-bar-song-info/player-bar-song-info.component';
 
 @NgModule({
   declarations: [

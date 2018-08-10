@@ -1,5 +1,5 @@
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { ChangeProgressBarService } from '../../services/change-progress-bar.service';
+import { ChangeProgressBarService } from '../../../services/change-progress-bar.service';
 
 @Component({
   selector: 'app-player-volume-bar',

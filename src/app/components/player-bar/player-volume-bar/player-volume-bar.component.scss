@@ -24,15 +24,15 @@
   }
 
   &__song-list-button:after {
-    background-image: url('../../../assets/img/icons/library.svg');
+    background-image: url('/library.svg');
   }
   
   &__volume-button:after {
-    background-image: url('../../../assets/img/icons/volume.svg');
+    background-image: url('/volume.svg');
   }
 
   &__volume-button--off:after {
-    background-image: url('../../../assets/img/icons/volumeoff.svg');
+    background-image: url('/volumeoff.svg');
   }
 
   &__volume-progress-bar {
