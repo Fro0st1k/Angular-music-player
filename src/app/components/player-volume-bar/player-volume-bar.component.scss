@@ -1,18 +1,18 @@
 @import 'src/scss/variables/colors';
 
-.music-player__playback-settings {
+.volume-settings {
   display: flex;
   justify-content: flex-end;
   align-items: center;
   margin-right: 16px;
   
-  &-song-list-button,
-  &-volume-button {
+  &__song-list-button,
+  &__volume-button {
     position: relative;
   }
 
-  &-song-list-button:after,
-  &-volume-button:after {
+  &__song-list-button:after,
+  &__volume-button:after {
     content: '';
     display: block;
     position: absolute;
@@ -23,19 +23,19 @@
     background-size: contain;
   }
 
-  &-song-list-button:after {
+  &__song-list-button:after {
     background-image: url('../../../assets/img/icons/library.svg');
   }
   
-  &-volume-button:after {
+  &__volume-button:after {
     background-image: url('../../../assets/img/icons/volume.svg');
   }
 
-  &-volume-button-off:after {
+  &__volume-button--off:after {
     background-image: url('../../../assets/img/icons/volumeoff.svg');
   }
 
-  &-volume-progress-bar {
+  &__volume-progress-bar {
     position: relative;
     width: 82px;
     height: 4px;
@@ -44,7 +44,7 @@
     margin-left: 2px;
     cursor: pointer;
 
-    &-state {
+    &-status {
       position: absolute;
       left: 0;
       top: 0;
@@ -55,7 +55,7 @@
       background-color: #fff;
     }
 
-    &:hover &-state {
+    &:hover &-status {
       background-color: $primary-color-contrast;
     }
   }

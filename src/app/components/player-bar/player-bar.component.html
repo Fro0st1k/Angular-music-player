@@ -1,19 +1,6 @@
 <div class="music-player">
   <div class="music-player__now-playing">
-    <div class="music-player__song-info">
-      <div class="music-player__song-info-cover">
-        <img class="music-player__song-info-cover-img" src={{playingSong?.cover}} alt="">
-      </div>
-      <div class="music-player__song-info-about">
-        <div class="music-player__song-info-name">
-        <a class="music-player__song-info-link music-player__song-info-link--song-name" href="#">{{playingSong?.name}}</a>
-        </div>
-        <div class="music-player__song-info-artist">
-          <a class="music-player__song-info-link music-player__song-info-link--artist-name" href="#">{{playingSong?.artist}}</a>
-        </div>
-      </div>
-    </div>
-    <button class="music-player__add-to-library control-button"></button>
+    <app-player-bar-song-info [playingSong]="playingSong"></app-player-bar-song-info>
   </div>
   <div class="music-player__controls">
     <div class="music-player__controls-buttons">

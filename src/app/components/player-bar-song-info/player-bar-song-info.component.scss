@@ -1,0 +1,69 @@
+@import 'src/scss/variables/colors';
+
+.music-player {
+  
+  &__info-bar {
+    display: flex;
+    align-items: center;
+  }
+
+  &__add-to-library {
+    position: relative;
+    &:after {
+      content: '';
+      display: block;
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 32px;
+      height: 32px;
+      background-size: contain;
+      background-image: url('../../../assets/img/icons/add.svg');
+    }
+  }
+}
+
+.song-info {
+  display: flex;
+  align-items: center;
+  color: $font-color;
+
+  &__cover {
+    width: 70px;
+    height: 70px;
+    background-color: $primary-color;
+    margin: 0 16px;
+
+    &-img {
+      display: block;
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  &__about {
+    margin-right: 10px;
+  }
+
+  &__link {
+    text-decoration: none;
+    color: $font-color;
+    letter-spacing: 0.21px;
+    font-weight: 200;
+
+    &--song-name {
+      font-size: 14px;
+    }
+
+    &--artist-name {
+      color: $font-artist-name-color;
+      font-size: 11px;
+      letter-spacing: 0.165px;
+    }
+
+    &:hover {
+      color: $font-color;
+      text-decoration: underline;
+    }
+  }
+}

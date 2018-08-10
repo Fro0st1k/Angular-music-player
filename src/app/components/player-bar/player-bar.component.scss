@@ -12,55 +12,8 @@
   
   &__now-playing {
     width: 30%;
-    display: flex;
-    align-items: center;
   }
   
-  &__song-info {
-    display: flex;
-    align-items: center;
-    color: $font-color;
-    
-    &-cover {
-      width: 70px;
-      height: 70px;
-      background-color: $primary-color;
-      margin: 0 16px;
-
-      &-img {
-        display: block;
-        width: 70px;
-        height: 70px;
-      }
-    }
-    
-    &-about {
-      margin-right: 10px;  
-    }
-    
-    &-link {
-      text-decoration: none;
-      color: $font-color;
-      letter-spacing: 0.21px;
-      font-weight: 200;
-      
-      &--song-name {
-        font-size: 14px;
-      }
-      
-      &--artist-name {
-        color: $font-artist-name-color;
-        font-size: 11px;
-        letter-spacing: 0.165px;
-      }
-      
-      &:hover {
-        color: $font-color;
-        text-decoration: underline;
-      }
-    }
-  }
-
   &__add-to-library {
     position: relative;
 

@@ -23,6 +23,7 @@ import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 import { RequestsHubService } from './services/requests-hub.service';
 import { ShareService } from './services/share.service';
 import { BgChangerDirective } from './directives/bg-changer.directive';
+import { PlayerBarSongInfoComponent } from './components/player-bar-song-info/player-bar-song-info.component';
 
 @NgModule({
   declarations: [
@@ -40,7 +41,8 @@ import { BgChangerDirective } from './directives/bg-changer.directive';
     PlayerTracklistSongPreviewComponent,
     ConvertSecondsPipe,
     PlayerVolumeBarComponent,
-    BgChangerDirective
+    BgChangerDirective,
+    PlayerBarSongInfoComponent
   ],
   imports: [
     BrowserModule,

@@ -8,8 +8,8 @@ export class ChangeProgressBarService {
 
   constructor() { }
 
-  moveProgressBarStatus(element: HTMLElement, persentage: number): void {
-    element.style.width = `${persentage}%`;
+  moveProgressBarStatus(statusBar: HTMLElement, persentage: number): void {
+    statusBar.style.width = `${persentage}%`;
   }
 
   changeProgressBarStatus(bar: HTMLElement, statusBar: HTMLElement, event: MouseEvent): number {

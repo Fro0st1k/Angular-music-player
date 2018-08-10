@@ -83,7 +83,7 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     this.isPlaying = this.shareService.getSongStatus();
   }
 
-  setSongInfo(id: number = 0): void {
+  setSongInfo(id: number = 0): void { // in shareService ?
     this.nowPlayingSongId = id;
     this.playingSong = this.songList[id];
     this.playingSong.duration = this.songList[id].duration;
