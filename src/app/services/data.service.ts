@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RequestsHubService } from './requests-hub.service';
 
+import { ISongInfo } from '../entities/interfaces.ISongInfo';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -49,16 +51,6 @@ export class DataService {
 
     return this.songListObs;
   }
-}
-
-interface ISongInfo {
-  id;
-  name;
-  artist;
-  albumName;
-  cover;
-  src;
-  duration;
 }
 
 interface ICategories {

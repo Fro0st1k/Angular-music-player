@@ -24,6 +24,7 @@ import { RequestsHubService } from './services/requests-hub.service';
 import { ShareService } from './services/share.service';
 import { BgChangerDirective } from './directives/bg-changer.directive';
 import { PlayerBarSongInfoComponent } from './components/player-bar/player-bar-song-info/player-bar-song-info.component';
+import { PlayerBarControlsComponent } from './components/player-bar/player-bar-controls/player-bar-controls.component';
 
 @NgModule({
   declarations: [
@@ -42,7 +43,8 @@ import { PlayerBarSongInfoComponent } from './components/player-bar/player-bar-s
     ConvertSecondsPipe,
     PlayerVolumeBarComponent,
     BgChangerDirective,
-    PlayerBarSongInfoComponent
+    PlayerBarSongInfoComponent,
+    PlayerBarControlsComponent
   ],
   imports: [
     BrowserModule,

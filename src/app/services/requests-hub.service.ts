@@ -3,6 +3,9 @@ import { HttpClient } from '@angular/common/http';
 import { filter, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
+import { ISongInfo } from '../entities/interfaces.ISongInfo';
+import { ISongList } from '../entities/interfaces.ISongList';
+
 @Injectable({
   providedIn: 'root'
 })
@@ -33,18 +36,4 @@ export class RequestsHubService {
 
 interface ICategories {
   categories: object[];
-}
-
-interface ISongList {
-  songList: ISongInfo[];
-}
-
-interface ISongInfo {
-  id;
-  name;
-  artist;
-  albumName;
-  cover;
-  src;
-  duration;
 }

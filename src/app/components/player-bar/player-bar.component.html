@@ -1,26 +1,13 @@
 <div class="music-player">
   <div class="music-player__now-playing">
-    <app-player-bar-song-info [playingSong]="playingSong"></app-player-bar-song-info>
+    <app-player-bar-song-info></app-player-bar-song-info>
   </div>
   <div class="music-player__controls">
-    <div class="music-player__controls-buttons">
-      <button (click)="toggleShufflePlay()" [ngClass]="{'music-player__controls-button--shuffle-active' : isShufflePlay}" class="music-player__controls-button music-player__controls-button--shuffle control-button"></button>
-      <button (click)="playNextOrPreviousSong()" class="music-player__controls-button music-player__controls-button--previous control-button"></button>
-      <button (click)="playSong()" [ngClass]="{'music-player__controls-button--pause' : isPlaying}" class="music-player__controls-button music-player__controls-button--play control-button"></button>
-      <button (click)="playNextOrPreviousSong(true)" class="music-player__controls-button music-player__controls-button--next control-button"></button>
-      <button (click)="toggleRepeatSong()" [ngClass]="{'music-player__controls-button--repeat-active' : isRepeatPlay}" class="music-player__controls-button music-player__controls-button--repeat control-button"></button>
-    </div>
-    <div class="music-player__playback-bar">
-      <div class="music-player__playback-bar-current-time">{{currentSongTime | convertSeconds}}</div>
-      <div (click)="handChangeCurrentSongTime($event)" #progressBar class="music-player__playback-bar-progress-bar">
-        <div #progressBarStatus class="music-player__playback-bar-progress-bar-state"></div>
-      </div>
-      <div class="music-player__playback-bar-time-left">{{playingSong?.duration | convertSeconds}}</div>
-    </div>
+    <app-player-bar-controls [audioContainer]="audioContainer"></app-player-bar-controls>
   </div>
   <div class="music-player__volume">
     <app-player-volume-bar [audioContainer]="audioContainer"></app-player-volume-bar>
   </div>
 </div>
 
-<audio #audio class="music-player__audio-container" src={{playingSong?.src}}></audio>
+<audio #audio class="music-player__audio-container"></audio>

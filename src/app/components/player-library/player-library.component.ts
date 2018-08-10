@@ -3,6 +3,9 @@ import { ShareService } from '../../services/share.service';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 
+import { ISongInfo } from '../../entities/interfaces.ISongInfo';
+import { ISongList } from '../../entities/interfaces.ISongList';
+
 @Component({
   selector: 'app-player-library',
   templateUrl: './player-library.component.html',
@@ -48,16 +51,3 @@ export class PlayerLibraryComponent implements OnInit, OnDestroy {
   }
 }
 
-interface ISongInfo {
-  id;
-  name;
-  artist;
-  albumName;
-  cover;
-  src;
-  duration;
-}
-
-interface ISongList {
-  songList: ISongInfo[];
-}
