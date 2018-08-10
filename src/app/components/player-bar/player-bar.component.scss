@@ -64,35 +64,35 @@
     }
     
     &--shuffle:after {
-      background-image: url('/random.svg');
+      background-image: url('../../../assets/img/icons/random.svg');
     }
 
     &--shuffle-active:after {
-      background-image: url('/random-active.svg');
+      background-image: url('../../../assets/img/icons/random-active.svg');
     }
 
     &--previous:after {
-      background-image: url('/left.svg');
+      background-image: url('../../../assets/img/icons/left.svg');
     }
 
     &--play:after {
-      background-image: url('/play.svg');
+      background-image: url('../../../assets/img/icons/play.svg');
     }
 
     &--pause:after {
-      background-image: url('/pause.svg');
+      background-image: url('../../../assets/img/icons/pause.svg');
     }
 
     &--next:after {
-      background-image: url('/right.svg');
+      background-image: url('../../../assets/img/icons/right.svg');
     }
 
     &--repeat:after {
-      background-image: url('/repeat.svg');
+      background-image: url('../../../assets/img/icons/repeat.svg');
     }
 
     &--repeat-active:after {
-      background-image: url('/repeat-active.svg');
+      background-image: url('../../../assets/img/icons/repeat-active.svg');
     }
   }
 
