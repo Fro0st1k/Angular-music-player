@@ -4,7 +4,7 @@ import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 
 import { ISongInfo } from '../../entities/interfaces.ISongInfo';
-import { ISongList } from '../../entities/interfaces.ISongList';
+import { filter, tap, switchMap } from 'rxjs/operators';
 
 @Component({
   selector: 'app-player-library',
@@ -15,11 +15,7 @@ import { ISongList } from '../../entities/interfaces.ISongList';
 export class PlayerLibraryComponent implements OnInit, OnDestroy {
   @Output() songList: ISongInfo[];
   @Output() currentSong: ISongInfo;
-
-  private currentSongId = this.shareService.getCurrentSongId();
-  private subscribes: Subscription[] = [];
   private dataSub: Subscription;
-  private changeIdSub: Subscription;
 
   constructor(
     private shareService: ShareService,
@@ -27,27 +23,20 @@ export class PlayerLibraryComponent implements OnInit, OnDestroy {
   ) {}
 
   ngOnInit() {
-    this.dataSub = this.dataService.getSongList()
-      .subscribe(data => {
-        if (data) {
-          this.songList = data;
-          this.currentSong = this.songList[this.currentSongId];
-        }
+    this.dataSub = this.dataService
+      .getSongList()
+      .pipe(
+        filter(data => data !== undefined),
+        tap(data => this.songList = data),
+        switchMap(data => this.shareService.nowPlayingSong$)
+      )
+      .subscribe(songInfo => {
+        this.currentSong = this.songList[songInfo.songId];
       });
-
-    this.changeIdSub = this.shareService.notifyChangeId
-      .subscribe(id => {
-        this.currentSongId = id;
-        this.currentSong = this.songList[id];
-      });
-
-    this.subscribes.push(this.changeIdSub, this.dataSub);
   }
 
   ngOnDestroy() {
-    this.subscribes.forEach(sub => {
-      sub.unsubscribe();
-    });
+    this.dataSub.unsubscribe();
   }
 }
 

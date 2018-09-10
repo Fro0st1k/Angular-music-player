@@ -8,31 +8,30 @@ import { ShareService } from '../../services/share.service';
 })
 
 export class PlayerSongComponent implements OnInit {
-  private isPlaying: boolean;
   @Input() song;
+  private isPlaying = false;
 
-  constructor(private shareService: ShareService) { }
-  // to do: change logic
+  constructor(private shareService: ShareService) {}
+
   ngOnInit() {
-    this.shareService.notifyChangeId
-      .subscribe(id => {
-        if (this.song.id === id) {
-          this.setSongStatus(this.shareService.getSongStatus());
-        } else {
-          this.setSongStatus(false);
-        }
-      });
+    this.shareService.nowPlayingSong$
+      .subscribe(songInfo => this.selectPlayingSong(songInfo.isPlaying, songInfo.songId));
+  }
 
-    if (this.song.id === this.shareService.getCurrentSongId() && this.shareService.getSongStatus()) {
-      this.setSongStatus(true);
+  playSelectedSong(selectedSongId: number): void {
+    if (!this.isPlaying) {
+      this.shareService.setNowPlayingSongInfo({ isPlaying: false, songId: selectedSongId });
+    } else {
+      this.shareService.setNowPlayingSongInfo({ isPlaying: true, songId: selectedSongId });
     }
+    this.shareService.playSelectedSong(selectedSongId);
   }
 
-  playCurrentSong(id) {
-    this.shareService.playCurrentSong(id);
-  }
-
-  setSongStatus(status: boolean) {
-    this.isPlaying = status;
+  selectPlayingSong(selectedSongIsPlaying: boolean, selectedSongId: number): void {
+    if (selectedSongId === this.song.id && selectedSongIsPlaying) {
+      this.isPlaying = true;
+    } else {
+      this.isPlaying = false;
+    }
   }
 }

@@ -33,7 +33,7 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
     private shareService: ShareService,
     private dataService: DataService,
     private changeProgressBar: ChangeProgressBarService
-  ) { }
+  ) {}
 
   ngOnInit(): void {
     this.dataService.getSongList()
@@ -44,28 +44,22 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
         }
       });
 
-    this.shareService.notifyPlaySong
-      .subscribe(id => {
-        this.playSelectedSong(id);
-      });
+    this.shareService.nowPlayingSong$.subscribe(songInfo => this.isPlaying = songInfo.isPlaying);
+    this.shareService.playSelectedSong$.subscribe(songId => this.playSelectedSong(songId));
 
     this.progressBar = this.progress.nativeElement;
     this.progressBarStatus = this.progressStatus.nativeElement;
-    this.isPlaying = this.shareService.getSongStatus();
   }
 
   playSong(): void {
-    if (this.shareService.getSongStatus()) {
+    if (this.isPlaying) {
       this.pauseSong();
       return;
     }
-    this.shareService.changeSongStatus(true);
-    this.isPlaying = this.shareService.getSongStatus();
-    this.shareService.sendNewSongId(this.nowPlayingSongId);
 
-    setTimeout(() => {
-      this.audioContainer.play();
-    });
+    this.shareService.setNowPlayingSongInfo({ isPlaying: true, songId: this.nowPlayingSongId});
+
+    setTimeout(() => this.audioContainer.play());
 
     this.refreshInterval = setInterval(() => {
       this.changeSongBarStatusPerSecond();
@@ -76,12 +70,10 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
   pauseSong(): void {
     clearInterval(this.refreshInterval);
     this.audioContainer.pause();
-    this.shareService.changeSongStatus(false);
-    this.shareService.sendNewSongId(this.nowPlayingSongId);
-    this.isPlaying = this.shareService.getSongStatus();
+    this.shareService.setNowPlayingSongInfo({ isPlaying: false, songId: this.nowPlayingSongId });
   }
 
-  setSongInfo(id: number = 0): void { // in shareService ?
+  setSongInfo(id: number = 0): void {
     this.nowPlayingSongId = id;
     this.playingSong = this.songList[id];
     this.audioContainer.src = this.playingSong.src;
@@ -118,7 +110,7 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
     this.playSong();
   }
 
-  toggleRepeatSong() {
+  toggleRepeatSong(): void {
     this.isRepeatPlay = !this.isRepeatPlay;
   }
 
@@ -131,12 +123,12 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
   }
 
   playSelectedSong(selectedSongId: number): void {
-    if (this.shareService.getSongStatus() && selectedSongId === this.shareService.getCurrentSongId()) {
+    if (selectedSongId === this.nowPlayingSongId && this.isPlaying) {
       this.pauseSong();
       return;
     }
 
-    if (selectedSongId !== this.shareService.getCurrentSongId()) {
+    if (selectedSongId !== this.nowPlayingSongId) {
       this.changeProgressBar.moveProgressBarStatus(this.progressBarStatus, 0);
     }
 
@@ -176,8 +168,6 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
     this.changeProgressBar.changeProgressBarStatusPerSecond(this.progressBarStatus, dislocationPerSecond);
   }
 
-  ngOnDestroy() {
-
-  }
+  ngOnDestroy() {}
 
 }

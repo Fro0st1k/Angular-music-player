@@ -1,39 +1,29 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class ShareService {
-  private changeIdSubject = new Subject<number>();
-  public notifyChangeId = this.changeIdSubject.asObservable();
-  private currentSongId = 0;
+  private nowPlayingSongSubject = new BehaviorSubject<INowPlayingSong>({ isPlaying: false, songId: 0 });
+  public nowPlayingSong$ = this.nowPlayingSongSubject.asObservable();
 
-  private playSongSubject = new Subject<number>();
-  public notifyPlaySong = this.playSongSubject.asObservable();
-  private isPlaying = false;
+  private playSelectedSongSubject = new Subject<number>();
+  public playSelectedSong$ = this.playSelectedSongSubject.asObservable();
 
   constructor() {}
 
-  public sendNewSongId(id: number): void {
-    this.currentSongId = id;
-    this.changeIdSubject.next(id);
+  public setNowPlayingSongInfo(songInfo: INowPlayingSong): void {
+    this.nowPlayingSongSubject.next(songInfo);
   }
 
-  public getCurrentSongId(): number {
-    return this.currentSongId;
+  public playSelectedSong(songInfo): void {
+    this.playSelectedSongSubject.next(songInfo);
   }
+}
 
-  public playCurrentSong(id: number): void {
-    this.playSongSubject.next(id);
-  }
-
-  public changeSongStatus(status: boolean): void {
-    this.isPlaying = status;
-  }
-
-  public getSongStatus(): boolean {
-    return this.isPlaying;
-  }
+interface INowPlayingSong {
+  isPlaying: boolean;
+  songId: number | null;
 }
