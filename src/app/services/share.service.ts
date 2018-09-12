@@ -18,8 +18,8 @@ export class ShareService {
     this.nowPlayingSongSubject.next(songInfo);
   }
 
-  public playSelectedSong(songInfo): void {
-    this.playSelectedSongSubject.next(songInfo);
+  public playSelectedSong(songId: number): void {
+    this.playSelectedSongSubject.next(songId);
   }
 }
 

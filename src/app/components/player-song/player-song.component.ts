@@ -19,11 +19,7 @@ export class PlayerSongComponent implements OnInit {
   }
 
   playSelectedSong(selectedSongId: number): void {
-    if (!this.isPlaying) {
-      this.shareService.setNowPlayingSongInfo({ isPlaying: false, songId: selectedSongId });
-    } else {
-      this.shareService.setNowPlayingSongInfo({ isPlaying: true, songId: selectedSongId });
-    }
+    this.shareService.setNowPlayingSongInfo({ isPlaying: this.isPlaying, songId: selectedSongId });
     this.shareService.playSelectedSong(selectedSongId);
   }
 
