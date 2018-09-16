@@ -1,10 +1,8 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input } from '@angular/core';
-
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, OnChanges, SimpleChange } from '@angular/core';
 import { ChangeProgressBarService } from '../../../services/change-progress-bar.service';
 import { ShareService } from '../../../services/share.service';
-import { DataService } from '../../../services/data.service';
 
-import { ISongInfo } from './../../../entities/interfaces.ISongInfo';
+import { ISongInfo } from '../../../entities/ISongInfo.interfaces';
 
 @Component({
   selector: 'app-player-bar-controls',
@@ -12,7 +10,7 @@ import { ISongInfo } from './../../../entities/interfaces.ISongInfo';
   styleUrls: ['./player-bar-controls.component.scss']
 })
 
-export class PlayerBarControlsComponent implements OnInit, OnDestroy {
+export class PlayerBarControlsComponent implements OnInit, OnChanges, OnDestroy {
   private refreshInterval: any;
   // SongTime
   @ViewChild('progressBar') progress: ElementRef;
@@ -21,9 +19,9 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
   private progressBarStatus: HTMLElement;
   // Play
   @Input() audioContainer: HTMLAudioElement;
+  @Input() songList: ISongInfo[];
   private nowPlayingSongId: number;
   private currentSongTime = 0;
-  public songList: ISongInfo[];
   public playingSong: ISongInfo;
   private isPlaying: boolean;
   private isShufflePlay: boolean;
@@ -31,24 +29,20 @@ export class PlayerBarControlsComponent implements OnInit, OnDestroy {
 
   constructor(
     private shareService: ShareService,
-    private dataService: DataService,
     private changeProgressBar: ChangeProgressBarService
   ) {}
 
   ngOnInit(): void {
-    this.dataService.getSongList()
-      .subscribe(data => {
-        if (data) {
-          this.songList = data;
-          this.setSongInfo();
-        }
-      });
-
     this.shareService.nowPlayingSong$.subscribe(songInfo => this.isPlaying = songInfo.isPlaying);
     this.shareService.playSelectedSong$.subscribe(songId => this.playSelectedSong(songId));
-
     this.progressBar = this.progress.nativeElement;
     this.progressBarStatus = this.progressStatus.nativeElement;
+  }
+
+  ngOnChanges(changes): void {
+    if (changes.songList.currentValue) {
+      this.setSongInfo();
+    }
   }
 
   playSong(): void {

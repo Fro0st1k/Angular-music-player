@@ -1,4 +1,4 @@
-import { ISongInfo } from './interfaces.ISongInfo';
+import { ISongInfo } from './ISongInfo.interfaces';
 
 export interface ISongList {
   songList: ISongInfo[];

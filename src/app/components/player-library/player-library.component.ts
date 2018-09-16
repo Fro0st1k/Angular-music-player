@@ -3,7 +3,7 @@ import { ShareService } from '../../services/share.service';
 import { DataService } from '../../services/data.service';
 import { Subscription } from 'rxjs';
 
-import { ISongInfo } from '../../entities/interfaces.ISongInfo';
+import { ISongInfo } from '../../entities/ISongInfo.interfaces';
 import { filter, tap, switchMap } from 'rxjs/operators';
 
 @Component({

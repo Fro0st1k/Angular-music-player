@@ -1,9 +1,9 @@
 <div class="music-player">
   <div class="music-player__now-playing">
-    <app-player-bar-song-info></app-player-bar-song-info>
+    <app-player-bar-song-info [nowPlayingSong]="nowPlayingSong"></app-player-bar-song-info>
   </div>
   <div class="music-player__controls">
-    <app-player-bar-controls [audioContainer]="audioContainer"></app-player-bar-controls>
+    <app-player-bar-controls [audioContainer]="audioContainer" [songList]="songList"></app-player-bar-controls>
   </div>
   <div class="music-player__volume">
     <app-player-volume-bar [audioContainer]="audioContainer"></app-player-volume-bar>

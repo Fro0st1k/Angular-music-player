@@ -1,4 +1,4 @@
-<div class="content-box" *ngFor="let category of categories">
+<div class="content-box">
   <div class="content-title">{{category.name}}</div>
   <div class="content-box__album-grid">
     <app-player-album-preview *ngFor="let album of category.albums" [album]="album"></app-player-album-preview>
