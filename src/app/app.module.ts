@@ -3,6 +3,7 @@ import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutingModule } from './routing/routing.module';
+import { StoreModule } from '@ngrx/store';
 
 import { AppComponent } from './components/player/app.component';
 import { PlayerBarComponent } from './components/player-bar/player-bar.component';
@@ -25,6 +26,8 @@ import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 import { RequestsHubService } from './services/requests-hub.service';
 import { ShareService } from './services/share.service';
 import { BgChangerDirective } from './directives/bg-changer.directive';
+
+import { volumeReducer } from './store/volume/reducers/volume.reducer';
 
 @NgModule({
   declarations: [
@@ -50,7 +53,10 @@ import { BgChangerDirective } from './directives/bg-changer.directive';
     BrowserModule,
     HttpClientModule,
     RoutingModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    StoreModule.forRoot({
+      volume: volumeReducer
+    })
   ],
   providers: [
     RequestsHubService,
