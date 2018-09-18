@@ -149,7 +149,8 @@ export class PlayerBarControlsComponent implements OnInit, OnChanges, OnDestroy 
   }
 
   handChangeCurrentSongTime(event: MouseEvent): void {
-    const shift = this.changeProgressBar.changeProgressBarStatus(this.progressBar, this.progressBarStatus, event);
+    const shift = this.changeProgressBar.calculateShiftProgressBarStatus(this.progressBar, event);
+    this.changeProgressBar.moveProgressBarStatus(this.progressBarStatus, shift);
     this.setCurrentSongTime(this.getCurrentSongDuration() * shift / 100);
   }
 

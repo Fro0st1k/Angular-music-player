@@ -1,4 +1,5 @@
-export interface IVolume {
+export interface IVolumeState {
   isMuted: boolean;
   value: number;
+  previousValue?: number;
 }

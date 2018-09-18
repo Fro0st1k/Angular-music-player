@@ -1,19 +1,36 @@
-import { IVolume } from './../models/volume.interface';
+import { IVolumeState } from './../models/volume.interface';
 import * as VolumeActions from '../actions/volume.actions';
 
 export type Action = VolumeActions.All;
 
-const defaultState: IVolume = {
+const defaultState: IVolumeState = {
   isMuted: false,
-  value: 1
+  value: 1,
+  previousValue: 1
 };
 
-export const volumeReducer = (state = defaultState, action: Action): IVolume => {
+export const volumeReducer = (state = defaultState, action: Action): IVolumeState => {
   switch (action.type) {
     case VolumeActions.MUTE:
-      return { isMuted: true, value: 0 };
+      return Object.assign({}, state, {
+        isMuted: true,
+        value: action.payload.value,
+        previousValue: action.payload.previousValue
+      });
     case VolumeActions.UNMUTE:
-      return { isMuted: false, value: action.value };
+      return Object.assign({}, state, {
+        isMuted: action.payload.isMuted,
+        value: action.payload.value,
+        previousValue: action.payload.previousValue
+      });
+    case VolumeActions.SET_VOLUME:
+      return Object.assign({}, state, {
+        isMuted: action.payload.isMuted,
+        value: action.payload.value,
+        previousValue: action.payload.previousValue
+      });
+    case VolumeActions.SET_VOLUME_SUCCSESS:
+      return state;
     default:
       return state;
   }

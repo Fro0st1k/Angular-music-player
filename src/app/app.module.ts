@@ -4,6 +4,8 @@ import { HttpClientModule } from '@angular/common/http';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutingModule } from './routing/routing.module';
 import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
 
 import { AppComponent } from './components/player/app.component';
 import { PlayerBarComponent } from './components/player-bar/player-bar.component';
@@ -28,6 +30,7 @@ import { ShareService } from './services/share.service';
 import { BgChangerDirective } from './directives/bg-changer.directive';
 
 import { volumeReducer } from './store/volume/reducers/volume.reducer';
+import { VolumeEffects } from './store/volume/effects/volume.effect';
 
 @NgModule({
   declarations: [
@@ -56,6 +59,10 @@ import { volumeReducer } from './store/volume/reducers/volume.reducer';
     BrowserAnimationsModule,
     StoreModule.forRoot({
       volume: volumeReducer
+    }),
+    EffectsModule.forRoot([VolumeEffects]),
+    StoreDevtoolsModule.instrument({
+      maxAge: 10
     })
   ],
   providers: [
