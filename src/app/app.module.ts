@@ -23,13 +23,14 @@ import { PlayerVolumeBarComponent } from './components/player-bar/player-volume-
 import { PlayerBarSongInfoComponent } from './components/player-bar/player-bar-song-info/player-bar-song-info.component';
 import { PlayerBarControlsComponent } from './components/player-bar/player-bar-controls/player-bar-controls.component';
 
-import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
-
 import { RequestsHubService } from './services/requests-hub.service';
 import { ShareService } from './services/share.service';
+
 import { BgChangerDirective } from './directives/bg-changer.directive';
+import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 
 import { volumeReducer } from './store/volume/reducers/volume.reducer';
+import { playingSongReduser } from './store/playing-song/reducers/playing-song.reducer';
 import { VolumeEffects } from './store/volume/effects/volume.effect';
 
 @NgModule({
@@ -58,7 +59,8 @@ import { VolumeEffects } from './store/volume/effects/volume.effect';
     RoutingModule,
     BrowserAnimationsModule,
     StoreModule.forRoot({
-      volume: volumeReducer
+      volume: volumeReducer,
+      playingSong: playingSongReduser,
     }),
     EffectsModule.forRoot([VolumeEffects]),
     StoreDevtoolsModule.instrument({

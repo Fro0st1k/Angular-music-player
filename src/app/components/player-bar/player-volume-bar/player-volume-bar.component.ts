@@ -20,7 +20,7 @@ export class PlayerVolumeBarComponent implements OnInit {
   private volumeBar: HTMLElement;
   private volumeStatusBar: HTMLElement;
   private isMuted: boolean;
-  private previousValue = 1;
+  private previousValue: number;
   private volumeBarWidthPercent = 100;
 
   constructor (

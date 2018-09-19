@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, OnChanges, SimpleChange } from '@angular/core';
+import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
 import { ChangeProgressBarService } from '../../../services/change-progress-bar.service';
 import { ShareService } from '../../../services/share.service';
 
@@ -51,8 +51,7 @@ export class PlayerBarControlsComponent implements OnInit, OnChanges, OnDestroy 
       return;
     }
 
-    this.shareService.setNowPlayingSongInfo({ isPlaying: true, songId: this.nowPlayingSongId});
-
+    this.shareService.setNowPlayingSongInfo({ isPlaying: true, songId: this.nowPlayingSongId });
     setTimeout(() => this.audioContainer.play());
 
     this.refreshInterval = setInterval(() => {
