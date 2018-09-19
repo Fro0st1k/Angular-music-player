@@ -21,6 +21,7 @@ export class PlayerVolumeBarComponent implements OnInit {
   private volumeStatusBar: HTMLElement;
   private isMuted: boolean;
   private previousValue = 1;
+  private volumeBarWidthPercent = 100;
 
   constructor (
     private changeProgressBar: ChangeProgressBarService,
@@ -35,7 +36,9 @@ export class PlayerVolumeBarComponent implements OnInit {
     this.volumeStore$.subscribe(volumeProps => {
       this.isMuted = volumeProps.isMuted;
       this.setCurrentVolume(volumeProps.value);
-      this.previousValue = volumeProps.previousValue;
+      if (!this.isMuted) {
+        this.previousValue = volumeProps.value;
+      }
     });
   }
 
@@ -55,18 +58,17 @@ export class PlayerVolumeBarComponent implements OnInit {
       this.store.dispatch(new VolumeActions.Unmute({
         isMuted: false,
         value: this.previousValue,
-        previousValue: this.previousValue,
-        data: { element: this.volumeStatusBar, width: this.previousValue * 100 }
+        previousValue: 0,
+        data: { element: this.volumeStatusBar, width: this.previousValue * this.volumeBarWidthPercent }
       }));
     }
   }
 
   handChangeVolume(event: MouseEvent): void {
     const shift = this.changeProgressBar.calculateShiftProgressBarStatus(this.volumeBar, event);
-
     this.store.dispatch(new VolumeActions.SetVolume({
-      value: shift / 100,
-      previousValue: shift / 100,
+      value: shift / this.volumeBarWidthPercent,
+      previousValue: this.previousValue,
       isMuted: false,
       data: { element: this.volumeStatusBar, width: shift }
     }));

@@ -13,15 +13,16 @@ export const volumeReducer = (state = defaultState, action: Action): IVolumeStat
   switch (action.type) {
     case VolumeActions.MUTE:
       return Object.assign({}, state, {
-        isMuted: true,
+        isMuted: action.payload.isMuted,
         value: action.payload.value,
         previousValue: action.payload.previousValue
       });
     case VolumeActions.UNMUTE:
+      console.log(action.payload.value, action.payload.previousValue);
       return Object.assign({}, state, {
         isMuted: action.payload.isMuted,
-        value: action.payload.value,
-        previousValue: action.payload.previousValue
+        value: action.payload.previousValue,
+        previousValue: action.payload.value
       });
     case VolumeActions.SET_VOLUME:
       return Object.assign({}, state, {
