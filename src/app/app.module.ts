@@ -1,11 +1,16 @@
-import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClientModule } from '@angular/common/http';
+import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RoutingModule } from './routing/routing.module';
+
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+
+import { AngularFireModule } from '@angular/fire';
+import { AngularFirestoreModule } from '@angular/fire/firestore';
+import { environment } from './../environments/environment';
 
 import { AppComponent } from './components/player/app.component';
 import { PlayerBarComponent } from './components/player-bar/player-bar.component';
@@ -22,9 +27,7 @@ import { PlayerTracklistSongPreviewComponent } from './components/player-trackli
 import { PlayerVolumeBarComponent } from './components/player-bar/player-volume-bar/player-volume-bar.component';
 import { PlayerBarSongInfoComponent } from './components/player-bar/player-bar-song-info/player-bar-song-info.component';
 import { PlayerBarControlsComponent } from './components/player-bar/player-bar-controls/player-bar-controls.component';
-
-import { RequestsHubService } from './services/requests-hub.service';
-import { ShareService } from './services/share.service';
+import { SpinnerComponent } from './components/spinner/spinner.component';
 
 import { BgChangerDirective } from './directives/bg-changer.directive';
 import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
@@ -32,6 +35,7 @@ import { ConvertSecondsPipe } from './pipes/convert-seconds.pipe';
 import { volumeReducer } from './store/volume/reducers/volume.reducer';
 import { playingSongReduser } from './store/playing-song/reducers/playing-song.reducer';
 import { VolumeEffects } from './store/volume/effects/volume.effect';
+import { ScrollableDirective } from './directives/scrollable.directive';
 
 @NgModule({
   declarations: [
@@ -51,13 +55,17 @@ import { VolumeEffects } from './store/volume/effects/volume.effect';
     PlayerVolumeBarComponent,
     BgChangerDirective,
     PlayerBarSongInfoComponent,
-    PlayerBarControlsComponent
+    PlayerBarControlsComponent,
+    SpinnerComponent,
+    ScrollableDirective
   ],
   imports: [
     BrowserModule,
     HttpClientModule,
     RoutingModule,
     BrowserAnimationsModule,
+    AngularFireModule.initializeApp(environment.firebase),
+    AngularFirestoreModule,
     StoreModule.forRoot({
       volume: volumeReducer,
       playingSong: playingSongReduser,
@@ -67,10 +75,7 @@ import { VolumeEffects } from './store/volume/effects/volume.effect';
       maxAge: 10
     })
   ],
-  providers: [
-    RequestsHubService,
-    ShareService
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 

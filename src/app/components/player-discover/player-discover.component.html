@@ -1,1 +1,2 @@
 <app-player-content-box *ngFor="let category of categories" [category]="category"></app-player-content-box>
+<app-spinner *ngIf="paginationService.loading | async"></app-spinner>
