@@ -10,23 +10,20 @@ import { scan, tap, take } from 'rxjs/operators';
 
 export class PaginationService {
   private query: QueryConfig;
-  private _done = new BehaviorSubject(false);
   private _loading = new BehaviorSubject(false);
   private _data = new BehaviorSubject([]);
 
   data: Observable<any>;
-  done: Observable<boolean> = this._done.asObservable();
   loading: Observable<boolean> = this._loading.asObservable();
 
-  constructor(private dbService: DataBaseService) {}
+  constructor(
+    private dbService: DataBaseService
+  ) {}
 
-  initConfig(path: string, field?: string, opts?: any): void {
+  initConfig(path: string, opts?: any): void {
     this.query = {
       path,
-      field,
-      limit: 5,
-      reverse: false,
-      prepend: false,
+      limit: 2,
       ...opts
     };
 
@@ -52,6 +49,7 @@ export class PaginationService {
 
   public getNextData(): void {
     const cursor = this.getCursor();
+
     if (cursor === null || this._loading.value) {
       return;
     }
@@ -60,15 +58,9 @@ export class PaginationService {
     this.mapAndUpdate(nextCollection);
   }
 
-  private mapAndUpdate(col: AngularFirestoreCollection<any>) {
-
-    if (this._done.value || this._loading.value) {
-      return;
-    }
-
+  private mapAndUpdate(collection: AngularFirestoreCollection<any>) {
     this._loading.next(true);
-    console.log('loadingNext');
-    return col.snapshotChanges().pipe(
+    return collection.snapshotChanges().pipe(
       tap(arr => {
         const values = arr.map(snap => {
           const data = snap.payload.doc.data();
@@ -76,12 +68,7 @@ export class PaginationService {
           return { ...data, doc };
         });
         this._data.next(values);
-        console.log('loadingNextFinish');
         this._loading.next(false);
-
-        if (!values.length) {
-          this._done.next(true);
-        }
       }),
       take(1)
     ).subscribe();

@@ -1,3 +1,4 @@
+import { PaginationService } from './../../services/pagination.service';
 import { Component, OnInit } from '@angular/core';
 import { routeAnimation } from '../../animations/route-animation';
 import { Router, Event, NavigationStart } from '@angular/router';
@@ -17,9 +18,9 @@ export class AppComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private backgroundChangerService: BackgroundChangerService
+    private backgroundChangerService: BackgroundChangerService,
+    private paginationService: PaginationService
   ) {
-
     this.router.events.subscribe((event: Event) => {
       if (event instanceof NavigationStart) {
         event.url === '/search' ? this.menuIsHidden = false : this.menuIsHidden = true;
@@ -30,12 +31,18 @@ export class AppComponent implements OnInit {
 
   ngOnInit() {
     this.backgroundChangerService.notifyImageChange.subscribe( imgEl => {
-      this.backgroundElement = document.querySelector('.content-bg');
+      this.backgroundElement = document.querySelector('.content__background');
       this.backgroundChangerService.renderBackground(imgEl, this.backgroundElement);
     });
   }
 
   prepRouteState(outlet: any) {
     return outlet.activatedRouteData['animation'] || '';
+  }
+
+  loadNextData(eventName: string): void {
+    if (eventName === 'bottom') {
+      this.paginationService.getNextData();
+    }
   }
 }

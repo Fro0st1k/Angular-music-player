@@ -1,12 +1,16 @@
-<app-player-left-side-menu></app-player-left-side-menu>
-<div class="content" style="overflow:hidden; height: 100%; overflow-y: scroll;">
-  <div class="content-wrapper">
-    <app-player-top-menu *ngIf="menuIsHidden"></app-player-top-menu>
-    <div [@routeAnimation]="prepRouteState(routerOutlet)">
-      <router-outlet #routerOutlet="outlet"></router-outlet>
+<div class="root">
+  <div class="root__top-block" appScrollable (scrollPosition)="loadNextData($event)">
+    <app-player-left-side-menu></app-player-left-side-menu>
+    <div class="content">
+      <app-player-top-menu *ngIf="menuIsHidden"></app-player-top-menu>
+      <div [@routeAnimation]="prepRouteState(routerOutlet)">
+        <router-outlet #routerOutlet="outlet"></router-outlet>
+      </div>
+      <div class="content__background" *ngIf="isLibrary"></div>
+      <div class="content__background-filter" *ngIf="isLibrary"></div>
     </div>
   </div>
+  <div class="root__bottom-block">
+    <app-player-bar></app-player-bar>
+  </div>
 </div>
-<app-player-bar></app-player-bar>
-<div class="content-bg" *ngIf="isLibrary"></div>
-<div class="content-bg-gradient" *ngIf="isLibrary"></div>
