@@ -1,5 +1,5 @@
-@import 'src/scss/variables/colors';
-@import 'src/scss/mixins/mixins';
+@import '../../../scss/variables/colors.scss';
+@import '../../../scss/mixins/mixins.scss';
 
 .content-title {
   font-size: 32px;
@@ -35,5 +35,9 @@
     @include r(1050) {
       grid-template-columns: repeat(3, auto);
     }
+  }
+
+  &__item {
+    margin: 0 auto;
   }
 }
