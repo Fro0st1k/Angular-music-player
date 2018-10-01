@@ -12,7 +12,7 @@ export class PlayerDiscoverComponent implements OnInit, OnDestroy {
   public categories;
   private dataSub: Subscription;
 
-  constructor(private paginationService: PaginationService) {}
+  constructor(public paginationService: PaginationService) {}
 
   ngOnInit() {
     this.paginationService.initConfig('categories', { limit: 3 });

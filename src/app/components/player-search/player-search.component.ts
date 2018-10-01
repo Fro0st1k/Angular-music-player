@@ -10,7 +10,7 @@ import { RequestsHubService } from '../../services/requests-hub.service';
 })
 
 export class PlayerSearchComponent implements OnInit, OnDestroy {
-  private albums = [];
+  public albums = [];
   private searchInput: HTMLInputElement;
   private searchSubscription: Subscription;
   @ViewChild('searchBox') searchBox: ElementRef;

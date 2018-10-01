@@ -12,8 +12,8 @@ import { BackgroundChangerService } from '../../services/background-changer.serv
 })
 
 export class AppComponent implements OnInit {
-  private menuIsHidden: boolean;
-  private isLibrary: boolean;
+  public menuIsHidden: boolean;
+  public isLibrary: boolean;
   private backgroundElement: HTMLElement;
 
   constructor(

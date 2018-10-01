@@ -21,11 +21,11 @@ export class PlayerBarControlsComponent implements OnInit, OnChanges, OnDestroy 
   @Input() audioContainer: HTMLAudioElement;
   @Input() songList: ISongInfo[];
   private nowPlayingSongId: number;
-  private currentSongTime = 0;
+  public currentSongTime = 0;
   public playingSong: ISongInfo;
-  private isPlaying: boolean;
-  private isShufflePlay: boolean;
-  private isRepeatPlay: boolean;
+  public isPlaying: boolean;
+  public isShufflePlay: boolean;
+  public isRepeatPlay: boolean;
 
   constructor(
     private shareService: ShareService,

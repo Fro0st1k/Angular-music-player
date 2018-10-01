@@ -1,7 +1,7 @@
 <div class="music-player__controls">
   <div class="music-player__controls-buttons">
     <button (click)="toggleShufflePlay()" [ngClass]="{'music-player__controls-button--shuffle-active' : isShufflePlay}" class="music-player__controls-button music-player__controls-button--shuffle control-button"></button>
-    <button (click)="playNextOrPreviousSong()" class="music-player__controls-button music-player__controls-button--previous control-button"></button>
+    <button (click)="playNextOrPreviousSong(false)" class="music-player__controls-button music-player__controls-button--previous control-button"></button>
     <button (click)="playSong()" [ngClass]="{'music-player__controls-button--pause' : isPlaying}" class="music-player__controls-button music-player__controls-button--play control-button"></button>
     <button (click)="playNextOrPreviousSong(true)" class="music-player__controls-button music-player__controls-button--next control-button"></button>
     <button (click)="toggleRepeatSong()" [ngClass]="{'music-player__controls-button--repeat-active' : isRepeatPlay}" class="music-player__controls-button music-player__controls-button--repeat control-button"></button>

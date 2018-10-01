@@ -9,7 +9,7 @@ const defaultState: IPlayingSong = {
   songList: []
 };
 
-export const playingSongReduser = (state = defaultState, action: Action) => {
+export function playingSongReduser (state = defaultState, action: Action) {
   switch (action.type) {
     case PlayingSongActions.PLAY:
       return { ...state,
@@ -23,4 +23,4 @@ export const playingSongReduser = (state = defaultState, action: Action) => {
     default:
       return state;
   }
-};
+}

@@ -9,7 +9,7 @@ import { ShareService } from '../../services/share.service';
 
 export class PlayerSongComponent implements OnInit {
   @Input() song;
-  private isPlaying = false;
+  public isPlaying = false;
 
   constructor(private shareService: ShareService) {}
 

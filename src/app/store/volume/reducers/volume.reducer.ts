@@ -9,7 +9,7 @@ const defaultState: IVolumeState = {
   previousValue: 1
 };
 
-export const volumeReducer = (state = defaultState, action: Action): IVolumeState => {
+export function volumeReducer (state = defaultState, action: Action): IVolumeState {
   switch (action.type) {
     case VolumeActions.MUTE:
       return { ...state,
@@ -34,4 +34,4 @@ export const volumeReducer = (state = defaultState, action: Action): IVolumeStat
     default:
       return state;
   }
-};
+}

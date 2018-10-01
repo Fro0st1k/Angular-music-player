@@ -12,12 +12,12 @@ import { Subscription } from 'rxjs';
 })
 
 export class PlayerBarComponent implements OnInit, OnDestroy {
-  private nowPlayingSong: ISongInfo;
-  private songList: ISongInfo[];
+  public nowPlayingSong: ISongInfo;
+  public songList: ISongInfo[];
   private dataSub: Subscription;
 
   @ViewChild('audio') audio: ElementRef;
-  private audioContainer: HTMLAudioElement;
+  public audioContainer: HTMLAudioElement;
 
   constructor(
     private shareService: ShareService,
