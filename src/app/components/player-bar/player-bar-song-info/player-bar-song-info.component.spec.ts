@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { PlayerBarSongInfoComponent } from './player-bar-song-info.component';
 
 describe('PlayerBarSongInfoComponent', () => {

@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ISongInfo } from '../../../entities/ISongInfo.interfaces';
+import { ISongInfo } from '../../../entities/interfaces/ISongInfo.interface';
 
 @Component({
   selector: 'app-player-bar-song-info',

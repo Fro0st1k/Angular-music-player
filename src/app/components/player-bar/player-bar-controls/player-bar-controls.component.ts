@@ -2,7 +2,7 @@ import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, OnChanges }
 import { ChangeProgressBarService } from '../../../services/change-progress-bar.service';
 import { ShareService } from '../../../services/share.service';
 
-import { ISongInfo } from '../../../entities/ISongInfo.interfaces';
+import { ISongInfo } from '../../../entities/interfaces/ISongInfo.interface';
 
 @Component({
   selector: 'app-player-bar-controls',

@@ -1,4 +1,4 @@
-import { ISongInfo } from '../../../entities/ISongInfo.interfaces';
+import { ISongInfo } from '../../../entities/interfaces/ISongInfo.interface';
 
 export interface IPlayingSong {
   isPlaying: boolean;

@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
 import { DataService } from '../../services/data.service';
 import { ShareService } from '../../services/share.service';
-import { ISongInfo } from '../../entities/ISongInfo.interfaces';
+import { ISongInfo } from '../../entities/interfaces/ISongInfo.interface';
 import { tap, switchMap, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
 

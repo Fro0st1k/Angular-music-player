@@ -1,75 +1,62 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-
+import { IQuery } from '../entities/interfaces/IQuery.interface';
 @Injectable({
   providedIn: 'root'
 })
 
 export class DataBaseService {
+  constructor(private afs: AngularFirestore) {}
 
-  constructor(private afs: AngularFirestore) { }
-
-  getCollection(collectionName: string): AngularFirestoreCollection {
-    return this.afs.collection(collectionName);
+  getCollection(query: IQuery): AngularFirestoreCollection {
+    return this.afs.collection(query.path);
   }
 
-  getDocument(collectionName: string, documentName: string): AngularFirestoreDocument {
-    return this.afs.collection(collectionName).doc(documentName);
+  getDocument(query: IQuery): AngularFirestoreDocument {
+    return this.afs.collection(query.path).doc(query.doc);
   }
 
-  addNewDataToDocument(collectionName: string, documentName: string, data: any): void {
-    this.afs.collection(collectionName).doc(documentName).set(data);
+  updateDataInDocument(query: IQuery): void {
+    this.afs.collection(query.path).doc(query.doc).update(query.payload);
   }
 
-  updateDataInDocument(collectionName: string, documentName: string, data: any): void {
-    this.addNewDataToDocument(collectionName, documentName, data);
+  createDocument(query: IQuery): void {
+    this.afs.collection(query.path).add(query.payload);
   }
 
-  createNewCollection(collectionName: string, documentName: string, data: any): void {
-    this.afs.collection(collectionName).doc(documentName).set(data);
+  createNewCollection(query: IQuery): void {
+    this.afs.collection(query.path).doc(query.doc).set(query.payload);
   }
 
-  rewriteDocumentData(collectionName: string, documentName: string, data: any): void {
-    this.createNewCollection(collectionName, documentName, data);
+  rewriteDocumentData(query: IQuery): void {
+    this.createNewCollection(query);
   }
 
-  getCollectionWithSorting(collectionRef: string, params: Iparams): AngularFirestoreCollection {
-    return this.afs.collection(collectionRef, ref => {
-      return ref.orderBy(params.field, params.direction);
+  getCollectionWithSorting(query: IQuery): AngularFirestoreCollection {
+    return this.afs.collection(query.path, ref => {
+      return ref.orderBy(query.sort.field, query.sort.direction);
     });
   }
 
-  getCollectionWithRules(collectionName: string, options: Ioptions): AngularFirestoreCollection {
-    return this.afs.collection(collectionName, ref => {
-      return ref.where(options.field, options.operator, options.value).limit(options.limit);
+  getCollectionWithRules(query: IQuery): AngularFirestoreCollection {
+    return this.afs.collection(query.path, ref => {
+      return ref.where(query.compare.field, query.compare.operator, query.compare.value).limit(query.limit);
     });
   }
 
-  getCollectionWithLimit(collectionName: string, limitValue: number): AngularFirestoreCollection {
-    return this.afs.collection(collectionName, ref => {
-      return ref.limit(limitValue);
+  getCollectionWithLimit(query: IQuery): AngularFirestoreCollection {
+    return this.afs.collection(query.path, ref => {
+      return ref.limit(query.limit);
     });
   }
 
-  getCollectionAfter(collectionName: string, limitValue: number, cursor) {
-    return this.afs.collection(collectionName, ref => {
-      return ref.limit(limitValue).startAfter(cursor);
+  getCollectionAfter(query: IQuery, cursor: AngularFirestoreDocument): AngularFirestoreCollection {
+    return this.afs.collection(query.path, ref => {
+      return ref.limit(query.limit).startAfter(cursor);
     });
   }
 
   createDocumentId(): string {
     return this.afs.createId();
   }
-}
-
-interface Ioptions {
-  value: number | string;
-  operator: any; // ts error, it should be a string
-  field: string;
-  limit: number;
-}
-
-interface Iparams {
-  field: string;
-  direction: any; // ts error, it should be a string
 }

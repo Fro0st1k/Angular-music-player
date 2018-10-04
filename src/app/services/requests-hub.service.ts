@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { filter, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { ISongInfo } from '../entities/ISongInfo.interfaces';
-import { ISongList } from '../entities/ISongList.interfaces';
+import { ISongInfo } from '../entities/interfaces/ISongInfo.interface';
+import { ISongList } from '../entities/interfaces/ISongList.interface';
 
 @Injectable({
   providedIn: 'root'

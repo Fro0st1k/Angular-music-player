@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { RequestsHubService } from './requests-hub.service';
 
-import { ISongInfo } from '../entities/ISongInfo.interfaces';
+import { ISongInfo } from '../entities/interfaces/ISongInfo.interface';
 
 @Injectable({
   providedIn: 'root'

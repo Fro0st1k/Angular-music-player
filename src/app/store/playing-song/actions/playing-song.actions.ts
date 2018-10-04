@@ -1,5 +1,5 @@
 import { Action } from '@ngrx/store';
-import { ISongInfo } from '../../../entities/ISongInfo.interfaces';
+import { ISongInfo } from '../../../entities/interfaces/ISongInfo.interface';
 
 export const PLAY = '[Playing song] Play';
 export const PAUSE = '[Playing song] Pause';

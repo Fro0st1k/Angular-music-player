@@ -3,13 +3,14 @@ import { AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/f
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { scan, tap, take } from 'rxjs/operators';
+import { IQuery } from '../entities/interfaces/IQuery.interface';
 
 @Injectable({
   providedIn: 'root'
 })
 
 export class PaginationService {
-  private query: QueryConfig;
+  private query: IQuery;
   private _loading = new BehaviorSubject(false);
   private _data = new BehaviorSubject([]);
 
@@ -27,7 +28,7 @@ export class PaginationService {
       ...opts
     };
 
-    const firstCollection = this.dbService.getCollectionWithLimit(this.query.path, this.query.limit);
+    const firstCollection = this.dbService.getCollectionWithLimit(this.query);
     this.mapAndUpdate(firstCollection);
 
     this.data = this._data.asObservable().pipe(
@@ -54,7 +55,7 @@ export class PaginationService {
       return;
     }
 
-    const nextCollection = this.dbService.getCollectionAfter(this.query.path, this.query.limit, cursor);
+    const nextCollection = this.dbService.getCollectionAfter(this.query, cursor);
     this.mapAndUpdate(nextCollection);
   }
 
@@ -73,12 +74,4 @@ export class PaginationService {
       take(1)
     ).subscribe();
   }
-}
-
-interface QueryConfig {
-  path: string;
-  field: string;
-  limit: number;
-  reverse: boolean;
-  prepend: boolean;
 }
