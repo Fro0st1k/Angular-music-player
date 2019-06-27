@@ -1,7 +1,7 @@
 import { Component, OnInit, ElementRef, ViewChild, OnDestroy } from '@angular/core';
 import { tap, map, filter, debounceTime, distinctUntilChanged, switchMap} from 'rxjs/operators';
 import { fromEvent, Subscription } from 'rxjs';
-import { RequestsHubService } from '../../services/requests-hub.service';
+import { RequestsHubService } from '../../services/request-hub/requests-hub.service';
 
 @Component({
   selector: 'app-player-search',
@@ -24,7 +24,7 @@ export class PlayerSearchComponent implements OnInit, OnDestroy {
 
   startWatchigInput() {
     return fromEvent(this.searchInput, 'input').pipe(
-      map((e: KeyboardEvent) => this.searchInput.value.toLowerCase()),
+      map(() => this.searchInput.value.toLowerCase()),
       filter(text => text.length > 3),
       debounceTime(30),
       distinctUntilChanged(),

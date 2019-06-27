@@ -3,8 +3,8 @@ import { HttpClient } from '@angular/common/http';
 import { filter, switchMap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
-import { ISongInfo } from '../entities/interfaces/ISongInfo.interface';
-import { ISongList } from '../entities/interfaces/ISongList.interface';
+import { ISongInfo } from '../../entities/interfaces/ISongInfo.interface';
+import { ISongList } from '../../entities/interfaces/ISongList.interface';
 
 @Injectable({
   providedIn: 'root'
@@ -16,17 +16,17 @@ export class RequestsHubService {
 
   constructor(private http: HttpClient) { }
 
-  getCategories(): Observable<ICategories> {
+  public getCategories(): Observable<ICategories> {
     console.log('get Categories');
     return this.http.get<ICategories>(this.categoriesUrl);
   }
 
-  getSongList(): Observable<ISongList> {
+  public getSongList(): Observable<ISongList> {
     console.log('get SongList');
     return this.http.get<ISongList>(this.getSongListUrl);
   }
 
-  getFoundAlbums(inputValue: string): Observable<ISongInfo> {
+  public getFoundAlbums(inputValue: string): Observable<ISongInfo> {
     return this.getSongList().pipe(
       switchMap(data => data.songList),
       filter(song => song.albumName.toLowerCase().indexOf(inputValue) !== -1),

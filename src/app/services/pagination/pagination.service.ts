@@ -1,9 +1,9 @@
-import { DataBaseService } from './data-base.service';
+import { DataBaseService } from '../data-base/data-base.service';
 import { AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 import { scan, tap, take } from 'rxjs/operators';
-import { IQuery } from '../entities/interfaces/IQuery.interface';
+import { IQuery } from '../../entities/interfaces/IQuery.interface';
 
 @Injectable({
   providedIn: 'root'

@@ -1,6 +1,6 @@
 import { Observable } from 'rxjs';
 import { Component, OnInit, ViewChild, ElementRef, Input } from '@angular/core';
-import { ChangeProgressBarService } from '../../../services/change-progress-bar.service';
+import { ChangeProgressBarService } from '../../../services/change-progress-bar/change-progress-bar.service';
 import { Store } from '@ngrx/store';
 import { IVolumeState } from '../../../store/volume/models/volume.interface';
 import * as VolumeActions from '../../../store/volume/actions/volume.actions';

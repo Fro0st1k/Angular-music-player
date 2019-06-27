@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 @Injectable({
   providedIn: 'root'
@@ -15,8 +15,7 @@ export class ChangeProgressBarService {
   calculateShiftProgressBarStatus(bar: HTMLElement, event: MouseEvent): number {
     const barProperty = bar.getBoundingClientRect();
     const mousePosition = event.pageX - barProperty.left + pageXOffset;
-    const shiftPersentage = mousePosition * 100 / barProperty.width;
-    return shiftPersentage;
+    return mousePosition * 100 / barProperty.width;
   }
 
   changeProgressBarStatusPerSecond(statusBar: HTMLElement, persentage: number): void {

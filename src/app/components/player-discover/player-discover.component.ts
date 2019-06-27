@@ -1,4 +1,4 @@
-import { PaginationService } from './../../services/pagination.service';
+import { PaginationService } from '../../services/pagination/pagination.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 

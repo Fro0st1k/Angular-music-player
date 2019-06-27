@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild, ElementRef, OnDestroy } from '@angular/core';
-import { DataService } from '../../services/data.service';
-import { ShareService } from '../../services/share.service';
+import { DataService } from '../../services/data/data.service';
+import { ShareService } from '../../services/share/share.service';
 import { ISongInfo } from '../../entities/interfaces/ISongInfo.interface';
 import { tap, switchMap, filter } from 'rxjs/operators';
 import { Subscription } from 'rxjs';
@@ -28,12 +28,12 @@ export class PlayerBarComponent implements OnInit, OnDestroy {
     this.audioContainer = this.audio.nativeElement;
 
     this.dataSub = this.dataService
-    .getSongList()
-    .pipe(
-      filter(data => data !== undefined),
-      tap(data => this.songList = data),
-      switchMap(data => this.shareService.nowPlayingSong$))
-    .subscribe(songInfo => this.nowPlayingSong = this.songList[songInfo.songId]);
+      .getSongList()
+      .pipe(
+        filter(data => data !== undefined),
+        tap(data => this.songList = data),
+        switchMap(() => this.shareService.nowPlayingSong$))
+      .subscribe(songInfo => this.nowPlayingSong = this.songList[songInfo.songId]);
   }
 
   ngOnDestroy() {

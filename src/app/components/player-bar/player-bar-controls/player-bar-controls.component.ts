@@ -1,6 +1,6 @@
 import { Component, OnInit, OnDestroy, ViewChild, ElementRef, Input, OnChanges } from '@angular/core';
-import { ChangeProgressBarService } from '../../../services/change-progress-bar.service';
-import { ShareService } from '../../../services/share.service';
+import { ChangeProgressBarService } from '../../../services/change-progress-bar/change-progress-bar.service';
+import { ShareService } from '../../../services/share/share.service';
 
 import { ISongInfo } from '../../../entities/interfaces/ISongInfo.interface';
 

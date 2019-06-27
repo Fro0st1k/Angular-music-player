@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, OnDestroy } from '@angular/core';
-import { ShareService } from '../../services/share.service';
-import { DataService } from '../../services/data.service';
+import { ShareService } from '../../services/share/share.service';
+import { DataService } from '../../services/data/data.service';
 import { Subscription } from 'rxjs';
 
 import { ISongInfo } from '../../entities/interfaces/ISongInfo.interface';
@@ -28,7 +28,7 @@ export class PlayerLibraryComponent implements OnInit, OnDestroy {
       .pipe(
         filter(data => data !== undefined),
         tap(data => this.songList = data),
-        switchMap(data => this.shareService.nowPlayingSong$)
+        switchMap(() => this.shareService.nowPlayingSong$)
       )
       .subscribe(songInfo => {
         this.currentSong = this.songList[songInfo.songId];

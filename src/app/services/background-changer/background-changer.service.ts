@@ -11,21 +11,21 @@ export class BackgroundChangerService {
 
   constructor() {}
 
-  setNewImage(imgEl: HTMLImageElement): void {
+  public setNewImage(imgEl: HTMLImageElement): void {
     this.imageSubject.next(imgEl);
   }
 
-  renderBackground(imgEl: HTMLImageElement, bgEl: HTMLElement): void {
+  public renderBackground(imgEl: HTMLImageElement, bgEl: HTMLElement): void {
     const backgroundColor = this.calculateBackgroundColor(imgEl);
     bgEl.style.background = `${backgroundColor}`;
   }
 
-  calculateBackgroundColor(imgEl: HTMLImageElement): string {
+  private calculateBackgroundColor(imgEl: HTMLImageElement): string {
     const rgb = this.getAverageRGB(imgEl);
     return this.rgbToHEX(rgb);
   }
 
-  getAverageRGB(imgEl: HTMLImageElement): Irgb {
+  private getAverageRGB(imgEl: HTMLImageElement): Irgb {
     const blockSize = 5;
     const canvas = document.createElement('canvas');
     const context = canvas.getContext && canvas.getContext('2d');
@@ -69,11 +69,11 @@ export class BackgroundChangerService {
     return rgb;
   }
 
-  rgbToHEX(rgb: Irgb): string {
+  private rgbToHEX(rgb: Irgb): string {
     return '#' + this.colorToHex(rgb.r) + this.colorToHex(rgb.g) + this.colorToHex(rgb.b);
   }
 
-  colorToHex(color: number): string {
+  private colorToHex(color: number): string {
     const hex = color.toString(16);
     return hex.length === 1 ? '0' + hex : hex;
   }

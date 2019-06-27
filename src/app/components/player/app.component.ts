@@ -1,8 +1,8 @@
-import { PaginationService } from './../../services/pagination.service';
+import { PaginationService } from '../../services/pagination/pagination.service';
 import { Component, OnInit } from '@angular/core';
 import { routeAnimation } from '../../animations/route-animation';
 import { Router, Event, NavigationStart } from '@angular/router';
-import { BackgroundChangerService } from '../../services/background-changer.service';
+import { BackgroundChangerService } from '../../services/background-changer/background-changer.service';
 
 @Component({
   selector: 'app-root',

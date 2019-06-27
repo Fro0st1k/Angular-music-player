@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Actions, Effect, ofType } from '@ngrx/effects';
 import { Observable } from 'rxjs';
 import { map, tap } from 'rxjs/operators';
-import { ChangeProgressBarService } from '../../../services/change-progress-bar.service';
+import { ChangeProgressBarService } from '../../../services/change-progress-bar/change-progress-bar.service';
 
 import * as volumeActions from '../actions/volume.actions';
 export type Action = volumeActions.All;
@@ -29,7 +29,7 @@ export class VolumeEffects {
     tap((action: volumeActions.SetVolume) => {
       this.changeProgressBarService.moveProgressBarStatus(action.payload.data.element, action.payload.data.width);
     }),
-    map(previousAction => new volumeActions.SetVolumeSuccsess())
+    map(() => new volumeActions.SetVolumeSuccsess())
   );
 
   constructor(private actions$: Actions, private changeProgressBarService: ChangeProgressBarService) { }

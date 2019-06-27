@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFirestore, AngularFirestoreCollection, AngularFirestoreDocument } from '@angular/fire/firestore';
-import { IQuery } from '../entities/interfaces/IQuery.interface';
+import { IQuery } from '../../entities/interfaces/IQuery.interface';
 @Injectable({
   providedIn: 'root'
 })

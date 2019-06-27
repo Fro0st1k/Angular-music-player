@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { DataService } from '../../services/data.service';
+import { DataService } from '../../services/data/data.service';
 import { Subscription } from 'rxjs';
 
 @Component({

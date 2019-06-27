@@ -1,8 +1,8 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
-import { RequestsHubService } from './requests-hub.service';
+import { RequestsHubService } from '../request-hub/requests-hub.service';
 
-import { ISongInfo } from '../entities/interfaces/ISongInfo.interface';
+import { ISongInfo } from '../../entities/interfaces/ISongInfo.interface';
 
 @Injectable({
   providedIn: 'root'

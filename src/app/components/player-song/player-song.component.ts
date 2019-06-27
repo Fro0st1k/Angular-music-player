@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ShareService } from '../../services/share.service';
+import { ShareService } from '../../services/share/share.service';
 
 @Component({
   selector: 'app-player-song',
@@ -24,10 +24,6 @@ export class PlayerSongComponent implements OnInit {
   }
 
   selectPlayingSong(selectedSongIsPlaying: boolean, selectedSongId: number): void {
-    if (selectedSongId === this.song.id && selectedSongIsPlaying) {
-      this.isPlaying = true;
-    } else {
-      this.isPlaying = false;
-    }
+    this.isPlaying = (selectedSongId === this.song.id && selectedSongIsPlaying);
   }
 }

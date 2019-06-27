@@ -1,9 +1,9 @@
 import { Router } from '@angular/router';
-import { PaginationService } from './../../services/pagination.service';
-import { BackgroundChangerService } from './../../services/background-changer.service';
+import { PaginationService } from '../../services/pagination/pagination.service';
+import { BackgroundChangerService } from '../../services/background-changer/background-changer.service';
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { AppComponent } from './app.component';
-import { CUSTOM_ELEMENTS_SCHEMA, NO_ERRORS_SCHEMA, Component } from '@angular/core';
+import { NO_ERRORS_SCHEMA, Component } from '@angular/core';
 
 describe('AppComponent', () => {
   @Component({ selector: 'router-outlet', template: '' })

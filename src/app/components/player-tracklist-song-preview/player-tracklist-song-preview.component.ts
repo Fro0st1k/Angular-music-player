@@ -1,5 +1,5 @@
 import { Component, Input, OnChanges } from '@angular/core';
-import { BackgroundChangerService } from '../../services/background-changer.service';
+import { BackgroundChangerService } from '../../services/background-changer/background-changer.service';
 
 @Component({
   selector: 'app-player-tracklist-song-preview',
